@@ -88,7 +88,7 @@ const renderContentBlock = (block, idx) => {
                 <figure key={idx} className="my-12">
                     <div className="rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-lg bg-slate-50 dark:bg-slate-900 relative">
                         <img
-                            src={block.src}
+                            src={`${import.meta.env.BASE_URL}${block.src.replace(/^\//, '')}`}
                             alt={block.alt}
                             className="w-full h-auto object-contain max-h-[600px] block"
                             onError={(e) => {

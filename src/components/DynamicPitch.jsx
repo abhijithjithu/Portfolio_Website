@@ -17,7 +17,7 @@ const ProfilePhoto = () => {
 
     return (
         <img
-            src="/assets/profile.jpg"
+            src={`${import.meta.env.BASE_URL}assets/profile.jpg`}
             alt="Profile photo"
             onError={() => setImgError(true)}
             className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover border-4 border-white/10 shadow-2xl flex-shrink-0"

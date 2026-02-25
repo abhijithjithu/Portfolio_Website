@@ -92,10 +92,10 @@ const DynamicPitch = () => {
     const Icon = activeData.icon;
 
     return (
-        <section className="min-h-screen flex flex-col justify-center pt-[70px] relative overflow-hidden">
+        <section className="flex flex-col justify-center pt-[70px] relative overflow-hidden" style={{ minHeight: 'calc(100vh - 0px)' }}>
             <ParallaxBlobs />
 
-            <div className="section-container section-pad z-10 w-full">
+            <div className="section-container py-10 pb-16 z-10 w-full">
                 {/* ── Two-column hero ── */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
                     {/* LEFT: staggered text */}

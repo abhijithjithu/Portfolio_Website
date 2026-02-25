@@ -30,7 +30,7 @@ const ExperienceTimeline = () => {
                     </motion.p>
                 </div>
 
-                <div className="max-w-4xl">
+                <div className="max-w-4xl mx-auto">
                     <div className="relative border-l border-slate-200 dark:border-slate-800 ml-6 md:ml-8">
                         {experienceData.map((exp, index) => {
                             const isExpanded = expandedId === exp.id;

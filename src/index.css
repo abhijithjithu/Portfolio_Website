@@ -13,12 +13,12 @@
 
   /* Unified section container — consistent width and horizontal padding */
   .section-container {
-    @apply max-w-screen-xl mx-auto px-6 md:px-12 lg:px-16;
+    @apply max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   /* Unified vertical section padding */
   .section-pad {
-    @apply py-20 md:py-28;
+    @apply py-16 md:py-20;
   }
 
   /* Editorial section label (e.g., "01 / Experience") */

@@ -49,7 +49,7 @@ const Education = () => {
                     </motion.p>
                 </div>
 
-                <div className="max-w-4xl">
+                <div className="max-w-5xl">
                     {educationData.map((edu, index) => {
                         const Icon = edu.icon;
                         return (

@@ -17,7 +17,7 @@ const itemVariants = {
     visible: {
         opacity: 1,
         y: 0,
-        transition: { type: "spring", stiffness: 100, damping: 14 }
+        transition: { type: 'spring', stiffness: 100, damping: 14 }
     }
 };
 
@@ -61,13 +61,13 @@ const ProjectGallery = () => {
                     </motion.span>
                 </div>
 
-                {/* Project Grid — first card is featured (full width on md) */}
+                {/* Project Grid */}
                 <motion.div
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, margin: "-80px" }}
+                    viewport={{ once: true, margin: '-80px' }}
                 >
                     {projectData.map((project, index) => {
                         const Icon = project.icon;
@@ -77,24 +77,37 @@ const ProjectGallery = () => {
                             <motion.div
                                 key={project.id}
                                 variants={itemVariants}
-                                className={`group relative glass rounded-2xl overflow-hidden flex flex-col transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/5 hover:-translate-y-1 hover:border-blue-400/30 dark:hover:border-slate-600/80 ${isFeatured ? 'md:col-span-2' : ''}`}
+                                whileHover={{
+                                    y: -8,
+                                    scale: 1.015,
+                                    transition: { type: 'spring', stiffness: 300, damping: 20 }
+                                }}
+                                className={`group relative glass rounded-2xl overflow-hidden flex flex-col cursor-pointer ${isFeatured ? 'md:col-span-2' : ''}`}
+                                style={{ transformOrigin: 'center bottom' }}
                             >
                                 <Link to={`/project/${project.id}`} className="absolute inset-0 z-20" aria-label={`View details for ${project.title}`} />
 
-                                {/* Gradient overlay on hover */}
-                                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-[0.04] dark:group-hover:opacity-[0.08] transition-opacity duration-500`} />
+                                {/* Gradient overlay — grows on hover */}
+                                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-[0.06] dark:group-hover:opacity-[0.12] transition-opacity duration-400`} />
+
+                                {/* Top edge colour glow on hover */}
+                                <div className={`absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r ${project.color} opacity-0 group-hover:opacity-80 transition-opacity duration-300`} />
 
                                 <div className="relative z-10 p-7 h-full flex flex-col pointer-events-none">
                                     <div className="flex justify-between items-start mb-5">
-                                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${project.border} glass-dark`}>
+                                        {/* Icon — spins slightly on hover */}
+                                        <motion.div
+                                            whileHover={{ rotate: 8, scale: 1.1 }}
+                                            className={`w-12 h-12 rounded-xl flex items-center justify-center border ${project.border} glass-dark transition-shadow duration-300 group-hover:shadow-lg`}
+                                        >
                                             <Icon className="w-6 h-6 text-slate-600 dark:text-slate-200" />
-                                        </div>
+                                        </motion.div>
                                         <span className="px-3 py-1 rounded-full bg-slate-200/80 dark:bg-slate-800/80 text-xs font-semibold text-slate-500 dark:text-slate-400 border border-slate-300/50 dark:border-slate-700">
                                             {project.role}
                                         </span>
                                     </div>
 
-                                    <h3 className={`font-bold text-slate-800 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors ${isFeatured ? 'text-2xl md:text-3xl' : 'text-xl'}`}>
+                                    <h3 className={`font-bold text-slate-800 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 ${isFeatured ? 'text-2xl md:text-3xl' : 'text-xl'}`}>
                                         {project.title}
                                     </h3>
                                     <h4 className="text-xs font-bold text-slate-400 dark:text-slate-500 mb-4 uppercase tracking-widest">
@@ -110,13 +123,15 @@ const ProjectGallery = () => {
                                             {project.tags.slice(0, isFeatured ? 5 : 3).map((tag, idx) => (
                                                 <span
                                                     key={idx}
-                                                    className="text-xs font-medium px-2 py-1 rounded-md bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50"
+                                                    className="text-xs font-medium px-2 py-1 rounded-md bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50 group-hover:border-blue-300/40 dark:group-hover:border-blue-700/40 transition-colors duration-200"
                                                 >
                                                     {tag}
                                                 </span>
                                             ))}
                                         </div>
-                                        <div className="ml-4 flex-shrink-0 flex items-center gap-1 text-xs font-semibold text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-x-2 group-hover:translate-x-0">
+
+                                        {/* Animated CTA arrow — slides in from right */}
+                                        <div className="ml-4 flex-shrink-0 flex items-center gap-1 text-xs font-semibold text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-3 group-hover:translate-x-0">
                                             View <ArrowUpRight className="w-3.5 h-3.5" />
                                         </div>
                                     </div>

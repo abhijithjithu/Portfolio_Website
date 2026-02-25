@@ -285,30 +285,33 @@ export const experienceData = [
 
 export const skillsData = [
     {
-        domain: "Cloud & Infrastructure",
+        domain: "Cloud & DevOps",
         skills: [
-            { name: "AWS", level: 90 },
-            { name: "Azure", level: 85 },
-            { name: "Docker & Kubernetes", level: 80 },
-            { name: "Linux Administration", level: 95 }
+            { name: "Linux & Bash Scripting", level: 95 },
+            { name: "AWS (Serverless / EC2 / S3)", level: 90 },
+            { name: "Docker & Git", level: 85 },
+            { name: "GCP / Firebase", level: 80 },
+            { name: "Apache Airflow / MinIO", level: 75 },
         ]
     },
     {
-        domain: "Backend & MLOps",
+        domain: "Data Science & AI",
         skills: [
-            { name: "Python", level: 95 },
-            { name: "Django / FastAPI", level: 85 },
-            { name: "PostgreSQL", level: 80 },
-            { name: "MLflow", level: 75 }
+            { name: "Python & SQL", level: 95 },
+            { name: "GenAI / RAG / LLMs", level: 85 },
+            { name: "Machine Learning (PyTorch / YOLO)", level: 80 },
+            { name: "Data Analytics & Survival Analysis", level: 80 },
+            { name: "MLOps & Enterprise Architecture", level: 75 },
         ]
     },
     {
-        domain: "Strategy & Automation",
+        domain: "Product Strategy & Automation",
         skills: [
-            { name: "Enterprise Architecture", level: 90 },
-            { name: "Process Automation", level: 95 },
-            { name: "Agile/Scrum", level: 85 },
-            { name: "Go-To-Market Strategy", level: 80 }
+            { name: "Agile / Scrum", level: 95 },
+            { name: "Product Lifecycle & Roadmapping", level: 90 },
+            { name: "RPA (Robocorp) & Process Automation", level: 90 },
+            { name: "Stakeholder & Risk Mgmt (BCP / RCA)", level: 90 },
+            { name: "Requirements Gathering & UAT Facilitation", level: 85 },
         ]
     }
 ];

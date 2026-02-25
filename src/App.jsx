@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import Home from './pages/Home';
@@ -122,16 +122,16 @@ function App() {
           ? 'glass-dark border-slate-200/60 dark:border-slate-800/60 shadow-sm shadow-slate-200/20 dark:shadow-none'
           : 'bg-transparent border-transparent'
           }`}>
-          <div className="max-w-screen-xl mx-auto px-6 md:px-12 lg:px-16 h-[70px] flex items-center justify-between">
+          <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 h-[70px] flex items-center justify-between">
             {/* Logo */}
-            <a href="/" className="flex items-center gap-3 group cursor-pointer flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg" aria-label="Home">
+            <Link to="/" className="flex items-center gap-3 group cursor-pointer flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg" aria-label="Home">
               <div className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-lg group-hover:bg-blue-500 transition-colors shadow-md shadow-blue-500/25">
                 J
               </div>
               <span className="text-base font-bold tracking-tight text-slate-800 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-white transition-colors">
                 Jithu Abhijith
               </span>
-            </a>
+            </Link>
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">

@@ -238,17 +238,8 @@ export const projectData = [
         color: "from-blue-600/20 to-indigo-600/20",
         border: "border-blue-500/30",
     },
-    {
-        id: "tcs-nse",
-        company: "TCS",
-        role: "Systems Engineer",
-        title: "NSE Risk & Uptime Management",
-        description: "Spearheaded risk mitigation strategies and optimized server uptime protocols for the National Stock Exchange (NSE), ensuring ultra-reliable transaction processing and zero downtime during peak loads.",
-        tags: ["Financial Infrastructure", "High Availability", "Risk Mitigation"],
-        icon: ShieldCheck,
-        color: "from-emerald-600/20 to-teal-600/20",
-        border: "border-emerald-500/30",
-    },
+
+
     {
         id: "playsekai",
         company: "PlaySekai",
@@ -259,17 +250,6 @@ export const projectData = [
         icon: MonitorPlay,
         color: "from-purple-600/20 to-pink-600/20",
         border: "border-purple-500/30",
-    },
-    {
-        id: "health-tech",
-        company: "Health-Tech Startup",
-        role: "Product Lead",
-        title: "Healthcare Innovation",
-        description: "Navigated the rapid development cycles of a health-tech startup. Directed product initiatives focusing on user-centric care models and digital compliance in healthcare.",
-        tags: ["Healthcare IT", "Agile Leadership", "User Experience"],
-        icon: Activity,
-        color: "from-rose-600/20 to-orange-600/20",
-        border: "border-rose-500/30",
     }
 ];
 
@@ -277,15 +257,15 @@ export const experienceData = [
     {
         id: "iim",
         role: "MBA in Digital Enterprise Management",
-        company: "IIM Udaipur (with Deloitte)",
+        company: "IIM Udaipur",
         duration: "Expected April 2026",
-        description: "Maintained a 3.5 GPA, ranking in the top 5% of the cohort. Member for the Technalytics Club. Engineered a secure, MCP-based Enterprise Co-pilot in collaboration with Deloitte to automate M365 workflows without exposing sensitive data to LLMs.",
+        description: "Maintained a 3.5 GPA, ranking in the top 5% of the cohort. Member of the Technalytics Club. During the MBA, engineered a secure MCP-based Enterprise Co-pilot — a project in collaboration with Deloitte — to automate M365 workflows without exposing sensitive data to LLMs.",
         technologies: ["Digital Enterprise Management", "MCP", "AI Security", "M365 Workflows"],
         icon: GraduationCap
     },
     {
         id: "prodapt",
-        role: "Consultant, AI & Cloud Solutions",
+        role: "Business Analyst, AI & Cloud Solutions",
         company: "Prodapt",
         duration: "Dec 2022 - Mar 2025",
         description: "Managed the end-to-end product lifecycle for 20+ automation initiatives using Agile/Scrum, reducing turnaround time by 60-95%. Architected scalable AWS-native solutions (Lambda, API Gateway, EC2, S3) supporting 3x user growth. Launched a RAG GenAI module improving SLA compliance by 50%, and engineered reusable Python/SQL libraries cutting dev cycle time significantly.",

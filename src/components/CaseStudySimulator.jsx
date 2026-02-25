@@ -119,12 +119,12 @@ const CaseStudySimulator = () => {
                             </p>
                         </div>
 
-                        <a
-                            href="/#gallery"
+                        <button
+                            onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}
                             className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:gap-3 transition-all group"
                         >
                             View all projects <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </a>
+                        </button>
                     </motion.div>
                 </div>
             </div>

@@ -161,14 +161,14 @@ const DynamicPitch = () => {
                             animate="visible"
                             className="flex flex-wrap gap-4"
                         >
-                            <motion.a
-                                href="/#gallery"
+                            <motion.button
+                                onClick={() => document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })}
                                 whileHover={{ scale: 1.04, y: -2 }}
                                 whileTap={{ scale: 0.97 }}
                                 className="px-7 py-3.5 rounded-full bg-blue-600 text-white font-semibold text-sm shadow-lg shadow-blue-500/25 hover:bg-blue-500 transition-colors"
                             >
                                 View Projects
-                            </motion.a>
+                            </motion.button>
                             <motion.a
                                 href="/assets/resume.pdf"
                                 download

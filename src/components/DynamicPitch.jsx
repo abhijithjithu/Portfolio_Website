@@ -1,7 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { pitchData } from '../data';
 import { User } from 'lucide-react';
+
+// ── Typewriter hook ──────────────────────────────────────────
+const ROLES = [
+    'Digital Transformation Strategist',
+    'MLOps & Cloud Engineer',
+    'MBA · IIM Udaipur',
+    'Product & AI Consultant',
+];
+
+const useTypewriter = (items, typingSpeed = 60, pauseMs = 2000, deletingSpeed = 35) => {
+    const [display, setDisplay] = useState('');
+    const [index, setIndex] = useState(0);
+    const [phase, setPhase] = useState('typing'); // 'typing' | 'pausing' | 'deleting'
+
+    useEffect(() => {
+        const current = items[index];
+        let timeout;
+
+        if (phase === 'typing') {
+            if (display.length < current.length) {
+                timeout = setTimeout(() => setDisplay(current.slice(0, display.length + 1)), typingSpeed);
+            } else {
+                timeout = setTimeout(() => setPhase('pausing'), pauseMs);
+            }
+        } else if (phase === 'pausing') {
+            setPhase('deleting');
+        } else if (phase === 'deleting') {
+            if (display.length > 0) {
+                timeout = setTimeout(() => setDisplay(display.slice(0, -1)), deletingSpeed);
+            } else {
+                setIndex((i) => (i + 1) % items.length);
+                setPhase('typing');
+            }
+        }
+
+        return () => clearTimeout(timeout);
+    }, [display, index, phase, items, typingSpeed, pauseMs, deletingSpeed]);
+
+    return display;
+};
 
 // ── Scroll-parallax blob background ─────────────────────────
 const ParallaxBlobs = () => {
@@ -12,11 +52,32 @@ const ParallaxBlobs = () => {
     return (
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
             {/* Top-left blob — parallaxes upward */}
-            <motion.div style={{ y: y1 }} className="absolute top-[-20%] left-[-10%] w-[55%] h-[75%] bg-blue-300/30 dark:bg-blue-600/15 blur-[140px] rounded-full" />
+            <motion.div
+                style={{ y: y1 }}
+                animate={{ scale: [1, 1.08, 1], opacity: [0.8, 1, 0.8] }}
+                transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute top-[-20%] left-[-10%] w-[55%] h-[75%] bg-blue-300/30 dark:bg-blue-600/15 blur-[140px] rounded-full"
+            />
             {/* Bottom-right blob — parallaxes downward */}
-            <motion.div style={{ y: y2 }} className="absolute bottom-[-25%] right-[-10%] w-[50%] h-[70%] bg-emerald-300/30 dark:bg-emerald-600/15 blur-[140px] rounded-full" />
-            {/* Subtle grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.04)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
+            <motion.div
+                style={{ y: y2 }}
+                animate={{ scale: [1, 1.06, 1], opacity: [0.7, 1, 0.7] }}
+                transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+                className="absolute bottom-[-25%] right-[-10%] w-[50%] h-[70%] bg-emerald-300/30 dark:bg-emerald-600/15 blur-[140px] rounded-full"
+            />
+            {/* Slowly drifting purple accent orb */}
+            <motion.div
+                animate={{
+                    x: [0, 40, -20, 0],
+                    y: [0, -30, 20, 0],
+                    scale: [1, 1.15, 0.9, 1],
+                    opacity: [0.3, 0.55, 0.35, 0.3],
+                }}
+                transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute top-[30%] left-[40%] w-[40%] h-[55%] bg-indigo-400/15 dark:bg-purple-600/10 blur-[160px] rounded-full pointer-events-none"
+            />
+            {/* Subtle dot grid */}
+            <div className="absolute inset-0 bg-[radial-gradient(rgba(148,163,184,0.12)_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:28px_28px]" />
         </div>
     );
 };
@@ -32,7 +93,7 @@ const ProfilePhoto = () => {
     ) : (
         <img
             src={`${import.meta.env.BASE_URL}assets/profile.jpg`}
-            alt="Jithu Abhijith"
+            alt="Abhijith P"
             onError={() => setImgError(true)}
             className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full object-cover"
         />
@@ -85,6 +146,25 @@ const fadeUp = {
     }),
 };
 
+// ── Typewriter role badge ────────────────────────────────────
+const TypewriterRole = () => {
+    const text = useTypewriter(ROLES, 55, 2200, 30);
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.4 }}
+            className="h-8 flex items-center mb-6"
+        >
+            <span className="text-lg md:text-xl text-blue-600 dark:text-blue-400 font-semibold tracking-tight">
+                {text}
+                <span className="ml-0.5 inline-block w-0.5 h-5 bg-blue-500 align-middle animate-pulse" />
+            </span>
+        </motion.div>
+    );
+};
+
+
 // ── Main Component ──────────────────────────────────────────
 const DynamicPitch = () => {
     const [activeTab, setActiveTab] = useState(Object.keys(pitchData)[0]);
@@ -121,26 +201,20 @@ const DynamicPitch = () => {
                             variants={containerVariants}
                             initial="hidden"
                             animate="visible"
-                            className="mb-6"
+                            className="mb-4"
                         >
                             <motion.h1
                                 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-800 dark:text-white leading-[1.05]"
-                                aria-label="Digital Transformation Strategist"
+                                aria-label="Abhijith P — Digital Transformation Strategist"
                             >
-                                <motion.span variants={lineVariants} className="block">
-                                    Digital
-                                </motion.span>
-                                <motion.span
-                                    variants={lineVariants}
-                                    className="block bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-500"
-                                >
-                                    Transformation
-                                </motion.span>
-                                <motion.span variants={lineVariants} className="block">
-                                    Strategist
+                                <motion.span variants={lineVariants} className="block text-slate-900 dark:text-white">
+                                    Abhijith P
                                 </motion.span>
                             </motion.h1>
                         </motion.div>
+
+                        {/* Typewriter role line */}
+                        <TypewriterRole />
 
                         {/* Sub-text */}
                         <motion.p

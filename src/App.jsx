@@ -6,6 +6,8 @@ import Home from './pages/Home';
 import ProjectDetail from './pages/ProjectDetail';
 import Footer from './components/Footer';
 import CursorSpotlight from './components/CursorSpotlight';
+import BackToTop from './components/BackToTop';
+import { ToastProvider } from './components/Toast';
 
 // Page transition wrapper
 const pageVariants = {
@@ -21,7 +23,8 @@ const PageTransition = ({ children }) => (
 );
 
 // ── User config ──────────────────────────────────────────────
-const CONTACT_EMAIL = 'jithuabhijith@gmail.com';
+const CONTACT_EMAIL = 'jithuabhijith999@gmail.com';
+const CONTACT_PHONE = '+91 7306902848';
 const LINKEDIN_URL = 'https://linkedin.com/in/abhijithp99';
 const GITHUB_URL = 'https://github.com/yourhandle'; // TODO: replace with real GitHub
 // ─────────────────────────────────────────────────────────────
@@ -32,7 +35,29 @@ const scrollToSection = (id) => {
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
-export { CONTACT_EMAIL, LINKEDIN_URL, GITHUB_URL };
+export { CONTACT_EMAIL, CONTACT_PHONE, LINKEDIN_URL, GITHUB_URL };
+
+// Scroll progress bar — fills across the top of the viewport
+const ScrollProgressBar = () => {
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const update = () => {
+      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+      const total = scrollHeight - clientHeight;
+      setProgress(total > 0 ? (scrollTop / total) * 100 : 0);
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    return () => window.removeEventListener('scroll', update);
+  }, []);
+  return (
+    <div className="fixed top-0 left-0 w-full h-0.5 z-[60] bg-transparent pointer-events-none">
+      <div
+        className="h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 transition-[width] duration-75"
+        style={{ width: `${progress}%` }}
+      />
+    </div>
+  );
+};
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -115,107 +140,110 @@ function App() {
     <Router basename={import.meta.env.BASE_URL}>
       <ScrollToTop />
       <CursorSpotlight />
+      <ToastProvider>
+        <div className="font-sans antialiased min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+          <ScrollProgressBar />
+          {/* Navigation */}
+          <header className={`fixed top-0 w-full z-50 border-b transition-all duration-300 ${scrolled
+            ? 'glass-dark border-slate-200/60 dark:border-slate-800/60 shadow-sm shadow-slate-200/20 dark:shadow-none'
+            : 'bg-transparent border-transparent'
+            }`}>
+            <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 h-[70px] flex items-center justify-between">
+              {/* Logo */}
+              <Link to="/" className="flex items-center gap-3 group cursor-pointer flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg" aria-label="Home">
+                <div className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-lg group-hover:bg-blue-500 transition-colors shadow-md shadow-blue-500/25">
+                  AP
+                </div>
+                <span className="text-base font-bold tracking-tight text-slate-800 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-white transition-colors">
+                  Abhijith P
+                </span>
+              </Link>
 
-      <div className="font-sans antialiased min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300">
-        {/* Navigation */}
-        <header className={`fixed top-0 w-full z-50 border-b transition-all duration-300 ${scrolled
-          ? 'glass-dark border-slate-200/60 dark:border-slate-800/60 shadow-sm shadow-slate-200/20 dark:shadow-none'
-          : 'bg-transparent border-transparent'
-          }`}>
-          <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 h-[70px] flex items-center justify-between">
-            {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group cursor-pointer flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-lg" aria-label="Home">
-              <div className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-lg group-hover:bg-blue-500 transition-colors shadow-md shadow-blue-500/25">
-                J
-              </div>
-              <span className="text-base font-bold tracking-tight text-slate-800 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-white transition-colors">
-                Jithu Abhijith
-              </span>
-            </Link>
+              {/* Desktop Nav */}
+              <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
+                {navLinks.map((link) => {
+                  const isActive = activeSection === link.id;
+                  return (
+                    <button
+                      key={link.id}
+                      onClick={() => scrollToSection(link.id)}
+                      className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${isActive
+                        ? 'text-blue-600 dark:text-blue-400'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                        }`}
+                      aria-current={isActive ? 'page' : undefined}
+                    >
+                      {link.label}
+                      {isActive && (
+                        <span className="absolute bottom-1 left-4 right-4 h-0.5 rounded-full bg-blue-600 dark:bg-blue-400" />
+                      )}
+                    </button>
+                  );
+                })}
+              </nav>
 
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.id;
-                return (
-                  <button
-                    key={link.id}
-                    onClick={() => scrollToSection(link.id)}
-                    className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${isActive
-                      ? 'text-blue-600 dark:text-blue-400'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60'
-                      }`}
-                    aria-current={isActive ? 'page' : undefined}
-                  >
-                    {link.label}
-                    {isActive && (
-                      <span className="absolute bottom-1 left-4 right-4 h-0.5 rounded-full bg-blue-600 dark:bg-blue-400" />
-                    )}
-                  </button>
-                );
-              })}
-            </nav>
+              {/* Right side actions */}
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={toggleTheme}
+                  className="p-2.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+                >
+                  {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                </button>
 
-            {/* Right side actions */}
-            <div className="flex items-center gap-3">
-              <button
-                onClick={toggleTheme}
-                className="p-2.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-              >
-                {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-              </button>
-
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="hidden sm:flex items-center px-5 py-2 rounded-full bg-blue-600 text-white text-sm font-semibold hover:bg-blue-500 transition-all shadow-md shadow-blue-500/25 hover:-translate-y-0.5 hover:shadow-blue-500/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              >
-                Hire Me
-              </a>
-
-              {/* Mobile menu toggle */}
-              <button
-                onClick={() => setMenuOpen(!menuOpen)}
-                className="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-                aria-expanded={menuOpen}
-              >
-                {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Dropdown */}
-          {menuOpen && (
-            <div className="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg">
-              <nav className="flex flex-col px-6 py-4 gap-1" aria-label="Mobile navigation">
-                {navLinks.map((link) => (
-                  <button
-                    key={link.id}
-                    onClick={() => { scrollToSection(link.id); setMenuOpen(false); }}
-                    className={`px-4 py-3 rounded-lg text-sm font-medium transition-all text-left focus:outline-none focus:ring-2 focus:ring-blue-500 ${activeSection === link.id
-                      ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
-                      : 'text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800/60'
-                      }`}
-                  >
-                    {link.label}
-                  </button>
-                ))}
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
-                  className="mt-2 px-4 py-3 rounded-lg text-center bg-blue-600 text-white text-sm font-semibold hover:bg-blue-500 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="hidden sm:flex items-center px-5 py-2 rounded-full bg-blue-600 text-white text-sm font-semibold hover:bg-blue-500 transition-all shadow-md shadow-blue-500/25 hover:-translate-y-0.5 hover:shadow-blue-500/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   Hire Me
                 </a>
-              </nav>
+
+                {/* Mobile menu toggle */}
+                <button
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  className="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+                  aria-expanded={menuOpen}
+                >
+                  {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                </button>
+              </div>
             </div>
-          )}
-        </header>
 
-        <AnimatedRoutes />
+            {/* Mobile Dropdown */}
+            {menuOpen && (
+              <div className="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg">
+                <nav className="flex flex-col px-6 py-4 gap-1" aria-label="Mobile navigation">
+                  {navLinks.map((link) => (
+                    <button
+                      key={link.id}
+                      onClick={() => { scrollToSection(link.id); setMenuOpen(false); }}
+                      className={`px-4 py-3 rounded-lg text-sm font-medium transition-all text-left focus:outline-none focus:ring-2 focus:ring-blue-500 ${activeSection === link.id
+                        ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+                        : 'text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                        }`}
+                    >
+                      {link.label}
+                    </button>
+                  ))}
+                  <a
+                    href={`mailto:${CONTACT_EMAIL}`}
+                    className="mt-2 px-4 py-3 rounded-lg text-center bg-blue-600 text-white text-sm font-semibold hover:bg-blue-500 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    Hire Me
+                  </a>
+                </nav>
+              </div>
+            )}
+          </header>
 
-        <Footer />
-      </div>
+          <AnimatedRoutes />
+
+          <Footer />
+          <BackToTop />
+        </div>
+      </ToastProvider>
     </Router>
   );
 }

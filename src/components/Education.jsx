@@ -9,7 +9,6 @@ const educationData = [
         shortName: 'IIM Udaipur',
         period: 'Expected April 2026',
         gpa: '3.5 GPA — Top 5% of Cohort',
-        collaboration: 'MCP Project in collaboration with Deloitte',
         highlights: [
             'Member of the Technalytics Club',
             'Engineered a secure, MCP-based Enterprise Co-pilot automating M365 workflows',
@@ -86,9 +85,6 @@ const Education = () => {
                                             </h3>
                                             <p className={`text-sm font-bold uppercase tracking-widest ${edu.accentColor}`}>
                                                 {edu.shortName}
-                                            </p>
-                                            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 font-medium">
-                                                {edu.collaboration}
                                             </p>
                                         </div>
                                     </div>

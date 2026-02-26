@@ -1,9 +1,21 @@
 import React from 'react';
-import { Mail, Download, Github, Linkedin, ArrowRight, Twitter } from 'lucide-react';
+import { Mail, Download, Github, Linkedin, ArrowRight, Copy, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { CONTACT_EMAIL, LINKEDIN_URL, GITHUB_URL } from '../App';
+import { CONTACT_EMAIL, CONTACT_PHONE, LINKEDIN_URL, GITHUB_URL } from '../App';
+import { useToast } from './Toast';
 
 const Footer = () => {
+    const showToast = useToast();
+
+    const copyEmail = (e) => {
+        e.preventDefault();
+        navigator.clipboard.writeText(CONTACT_EMAIL).then(() => {
+            showToast('Email copied to clipboard!');
+        }).catch(() => {
+            window.location.href = `mailto:${CONTACT_EMAIL}`;
+        });
+    };
+
     return (
         <footer className="bg-slate-50 dark:bg-slate-950 border-t border-slate-200/50 dark:border-slate-800/50 relative overflow-hidden transition-colors duration-300">
             {/* Background glow */}
@@ -26,14 +38,14 @@ const Footer = () => {
                     </p>
 
                     <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-                        <a
-                            href={`mailto:${CONTACT_EMAIL}`}
+                        <button
+                            onClick={copyEmail}
                             className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 group focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                         >
-                            <Mail className="w-4 h-4 group-hover:-rotate-12 transition-transform" />
-                            Get in Touch
+                            <Copy className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                            Copy Email
                             <ArrowRight className="w-4 h-4 opacity-70 group-hover:translate-x-1 transition-transform" />
-                        </a>
+                        </button>
 
                         <a
                             href={`${import.meta.env.BASE_URL}assets/resume.pdf`}
@@ -48,7 +60,7 @@ const Footer = () => {
 
                 {/* Footer bottom bar */}
                 <div className="flex flex-col md:flex-row justify-between items-center gap-5 text-sm text-slate-500 dark:text-slate-500">
-                    <p>© {new Date().getFullYear()} Jithu Abhijith. Built with React & Tailwind CSS.</p>
+                    <p>© {new Date().getFullYear()} Abhijith P. Built with React &amp; Tailwind CSS.</p>
 
                     <div className="flex items-center gap-1">
                         <a
@@ -69,12 +81,19 @@ const Footer = () => {
                         >
                             <Github className="w-4 h-4" />
                         </a>
-                        <a
-                            href={`mailto:${CONTACT_EMAIL}`}
-                            aria-label="Send Email"
+                        <button
+                            onClick={copyEmail}
+                            aria-label="Copy email address"
                             className="p-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                         >
                             <Mail className="w-4 h-4" />
+                        </button>
+                        <a
+                            href={`tel:${CONTACT_PHONE.replace(/\s+/g, '')}`}
+                            aria-label="Call phone number"
+                            className="p-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        >
+                            <Phone className="w-4 h-4" />
                         </a>
 
                         <span className="mx-1 text-slate-300 dark:text-slate-700">|</span>
@@ -95,11 +114,17 @@ const Footer = () => {
                         >
                             GitHub
                         </a>
-                        <a
-                            href={`mailto:${CONTACT_EMAIL}`}
+                        <button
+                            onClick={copyEmail}
                             className="hidden sm:block px-3 py-1.5 text-xs font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
                         >
-                            Email
+                            Copy Email
+                        </button>
+                        <a
+                            href={`tel:${CONTACT_PHONE.replace(/\s+/g, '')}`}
+                            className="hidden sm:block px-3 py-1.5 text-xs font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md"
+                        >
+                            Call Me
                         </a>
                     </div>
                 </div>

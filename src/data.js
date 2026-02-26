@@ -7,7 +7,8 @@ import {
     Activity,
     ShieldCheck,
     GraduationCap,
-    Cloud
+    Cloud,
+    Bot
 } from 'lucide-react';
 
 export const pitchData = {
@@ -25,8 +26,8 @@ export const pitchData = {
     },
     "Entrepreneurship & Product": {
         title: "Building from Zero to One",
-        description: "Driven by a builder's mindset, I've hands-on experience co-founding ventures like the digital brand PlaySekai and navigating the complexities of a health-tech startup. I understand agile product development, user-centric design, and market fit.",
-        highlights: ["PlaySekai Co-founder", "Health-Tech Startup", "Agile Product Dev"],
+        description: "Driven by a builder's mindset, I've hands-on experience co-founding ventures like the digital brand PlaySekai. I understand agile product development, user-centric design, and market fit.",
+        highlights: ["PlaySekai Co-founder", "Agile Product Dev", "User-Centric Design"],
         icon: Lightbulb
     }
 };
@@ -60,7 +61,7 @@ export const projectData = [
                     'Source: CDNow dataset (single acquisition cohort)',
                     'Transactions: 69,659',
                     'Customers: 23,570',
-                    'Time Period: Jan 1997 – Jun 1998'
+                    'Time Period: Jan 1997 â€“ Jun 1998'
                 ]
             },
             { type: 'paragraph', text: '**Key Fields:** Customer ID, Transaction Date, Purchase Quantity, Revenue' },
@@ -75,7 +76,7 @@ export const projectData = [
             },
             { type: 'subtitle', text: '2. CLV Modeling' },
             { type: 'paragraph', text: 'Used a retention-based infinite horizon model:' },
-            { type: 'formula', equation: 'CLV = (Margin × AvgMonthlyRevenue × Retention) / (1 + DiscountRate - Retention)' },
+            { type: 'formula', equation: 'CLV = (Margin Ã— AvgMonthlyRevenue Ã— Retention) / (1 + DiscountRate - Retention)' },
             {
                 type: 'list', items: [
                     'Contribution margin: 30%',
@@ -111,13 +112,13 @@ export const projectData = [
                     ['Infrequent Buyers', '0.48']
                 ]
             },
-            { type: 'callout', text: 'Frequent buyers generate ~6× more value' },
+            { type: 'callout', text: 'Frequent buyers generate ~6Ã— more value' },
 
             { type: 'subtitle', text: 'Retention Drives CLV More Than Margin' },
             {
                 type: 'list', items: [
-                    'Increasing retention → ~49% CLV increase',
-                    'Increasing margin → ~33% CLV increase'
+                    'Increasing retention â†’ ~49% CLV increase',
+                    'Increasing margin â†’ ~33% CLV increase'
                 ]
             },
             { type: 'callout', text: 'Retention has a compounding effect, making it the most powerful growth lever' },
@@ -133,7 +134,7 @@ export const projectData = [
                     'Offer personalized recommendations'
                 ]
             },
-            { type: 'callout', text: 'Moving users from 1 → 2 purchases drastically increases CLV' },
+            { type: 'callout', text: 'Moving users from 1 â†’ 2 purchases drastically increases CLV' },
             { type: 'subtitle', text: '2. Invest in Loyalty Programs for High-Value Customers' },
             {
                 type: 'list', items: [
@@ -209,7 +210,7 @@ export const projectData = [
             { type: 'subtitle', text: 'Predicted Survival Curves' },
             { type: 'image', src: '/assets/survival-curves-graph.png', alt: 'Predicted Survival Curves graph', caption: 'Analysis: This graph demonstrates the model\'s ability to forecast the future. By plotting the survival probability over time for specific employee profiles, we can visualize how the likelihood of staying changes month-over-month, allowing for personalized retention strategies.' },
 
-            { type: 'section_title', text: '💡 Key Insights & Findings' },
+            { type: 'section_title', text: 'Key Insights & Findings' },
             {
                 type: 'list', items: [
                     'The "Survival" Curve: The Kaplan-Meier analysis revealed that the highest risk of attrition occurs within the first 2-3 years of tenure.',
@@ -218,7 +219,7 @@ export const projectData = [
                 ]
             },
 
-            { type: 'section_title', text: '🚀 Business Impact' },
+            { type: 'section_title', text: 'Business Impact' },
             {
                 type: 'list', items: [
                     'Proactive Retention: HR can now identify employees entering high-risk tenure "windows."',
@@ -228,17 +229,90 @@ export const projectData = [
         ]
     },
     {
-        id: "deloitte-copilot",
-        company: "Deloitte",
-        role: "Digital Consultant",
-        title: "System Co-Pilot Integration",
-        description: "Designed and integrated a specialized 'System Co-Pilot' for suite of Microsoft applications, enhancing user productivity and streamlining enterprise workflows across departments.",
-        tags: ["Microsoft Ecosystem", "Enterprise Automation", "AI Integration"],
-        icon: Briefcase,
-        color: "from-blue-600/20 to-indigo-600/20",
-        border: "border-blue-500/30",
-    },
+        id: "mcp-enterprise-copilot",
+        company: "IIM Udaipur × Deloitte",
+        role: "AI Systems Engineer",
+        title: "Enterprise System Co-Pilot: Secure M365 Automation",
+        description: "Architected a secure AI co-pilot using the Model Context Protocol (MCP) to automate end-to-end Microsoft 365 workflows — generating Word reports, PowerPoint decks, and Excel sheets — without exposing proprietary data to external LLMs.",
+        tags: ["Python", "FastAPI", "React 19", "MCP", "Google Gemini", "M365", "GenAI"],
+        icon: Bot,
+        color: "from-violet-600/20 to-blue-600/20",
+        border: "border-violet-500/30",
+        content: [
+            { type: 'section_title', text: 'Executive Summary' },
+            { type: 'paragraph', text: 'Business Analysts at enterprise organisations lose significant productive hours to low-value, repetitive administrative tasks — merging Excel data, formatting brand-compliant PowerPoint presentations, and drafting reports. This project solves that problem with a secure, AI-powered co-pilot that automates these workflows end-to-end inside a zero-trust architecture, ensuring no sensitive data ever leaves the organisation.' },
+            { type: 'callout', text: 'Built in collaboration with Deloitte as part of the IIM Udaipur MBA programme, this system was designed to meet enterprise-grade security protocols that prohibit exposure of client data to external LLMs.' },
 
+            { type: 'section_title', text: 'The Challenge' },
+            { type: 'paragraph', text: 'Two critical constraints had to be simultaneously satisfied:' },
+            {
+                type: 'list', items: [
+                    'Productivity: Analysts were spending hours on repetitive document generation tasks that required no strategic thinking.',
+                    'Security: Enterprise protocols strictly prohibited sending sensitive business context or client data to external AI APIs like OpenAI or standard Gemini calls.',
+                    'Usability: Any solution needed to be as simple as sending a natural language message — zero technical overhead for the end user.'
+                ]
+            },
+
+            { type: 'section_title', text: 'Architecture & Solution' },
+            { type: 'paragraph', text: 'I architected a three-tiered, zero-trust system using the **Model Context Protocol (MCP)** as a secure orchestration layer — creating a strict separation between the AI model and business data.' },
+            { type: 'image', src: '/assets/mcp-architecture.png', alt: 'MCP System Architecture Diagram', caption: 'Three-tiered MCP architecture: React 19 frontend → FastAPI + MCP backend → local Python automation libraries. The AI model never directly accesses business data.' },
+
+            { type: 'subtitle', text: 'How It Works' },
+            {
+                type: 'list', items: [
+                    '1. User submits a natural language request via the React 19 chat interface.',
+                    '2. Google Gemini 2.5 Flash performs high-level reasoning and intent detection to select the correct MCP tool.',
+                    '3. Instead of sending data to the cloud, the MCP backend maps the AI\'s function call to local Python libraries (python-docx, python-pptx, openpyxl) running within a secure, sandboxed file system.',
+                    '4. The generated document is returned to the analyst in real time — sensitive data never leaving the local environment.'
+                ]
+            },
+
+            { type: 'section_title', text: 'Chat Interface' },
+            { type: 'image', src: '/assets/mcp-chat-ui.png', alt: 'Enterprise Co-Pilot Chat Interface', caption: 'Responsive React 19 chat UI — analysts interact in plain English and receive generated M365 documents in seconds.' },
+
+            { type: 'section_title', text: 'Technical Stack' },
+            {
+                type: 'table',
+                headers: ['Layer', 'Technology'],
+                rows: [
+                    ['Frontend', 'React 19, TypeScript, Tailwind CSS 4, Vite 7'],
+                    ['Backend', 'Python, FastAPI, Uvicorn'],
+                    ['AI & Orchestration', 'Google Gemini 2.5 Flash, Model Context Protocol (MCP)'],
+                    ['Word Automation', 'python-docx'],
+                    ['PowerPoint Automation', 'python-pptx'],
+                    ['Excel Automation', 'openpyxl, xlsxwriter'],
+                ]
+            },
+
+            { type: 'section_title', text: 'Key Achievements & Impact' },
+            {
+                type: 'table',
+                headers: ['Metric', 'Result'],
+                rows: [
+                    ['Workflow Execution Time', '30 – 35 seconds (vs hours manually)'],
+                    ['Time Reduction', '95 – 98%'],
+                    ['Workflow Success Rate', '100% during end-to-end validation'],
+                    ['Analyst Time Saved', '6+ hours per week'],
+                    ['Estimated Annual Net Benefit', '₹5.56 Lakhs per analyst'],
+                    ['ROI', '28:1'],
+                ]
+            },
+            { type: 'callout', text: 'A 95-98% reduction in task execution time — complex, multi-step document generation workflows completed in 30-35 seconds with zero manual intervention.' },
+
+            { type: 'section_title', text: 'Security Design Principles' },
+            {
+                type: 'list', items: [
+                    'Zero-Trust Architecture: The AI model is structurally prevented from accessing raw business data.',
+                    'Local Execution: All file operations run on local Python libraries â€” no data leaves the secure environment.',
+                    'Tool-Level Access Control: MCP enforces a strict allowlist of operations the AI can invoke.',
+                    'Audit-Ready: Every tool invocation is logged for compliance and traceability.'
+                ]
+            },
+
+            { type: 'section_title', text: 'Tools & Skills Demonstrated' },
+            { type: 'tags', items: ['Python', 'FastAPI', 'React 19', 'TypeScript', 'Model Context Protocol (MCP)', 'Google Gemini 2.5 Flash', 'python-docx', 'python-pptx', 'openpyxl', 'Enterprise Security Design', 'AI Systems Architecture'] },
+        ]
+    },
 
     {
         id: "playsekai",
@@ -319,23 +393,16 @@ export const skillsData = [
 export const testimonialsData = [
     {
         id: 1,
-        content: "An exceptional blend of technical acumen and business strategy. Instrumental in delivering our enterprise automation goals well ahead of schedule.",
-        author: "Director of Digital Transformation",
-        company: "Fortune 500 Client (Deloitte engagement)",
-        initials: "DT"
+        content: "Abhijith is a highly skilled and dedicated professional. He combines technical expertise with a sharp strategic mind. He is Sure to become an outstanding business leader.",
+        author: "Asad Nabi",
+        company: "Chief Enterprise Architect | Liberty Latin America",
+        initials: "AN"
     },
     {
         id: 2,
-        content: "The system architectures designed for our core trading infrastructure handled peak loads flawlessly. A true expert in high-availability and risk mitigation.",
-        author: "Senior Technical Manager",
-        company: "National Stock Exchange (TCS engagement)",
-        initials: "SM"
-    },
-    {
-        id: 3,
-        content: "Brought clarity, vision, and rapid execution to our product lifecycle. The ability to abstract complex technical requirements into user-friendly design is unmatched.",
-        author: "Co-Founder",
-        company: "PlaySekai",
-        initials: "CF"
+        content: "Abhijith is a highly skilled developer and analyst. His work consistently added immense value to our team. He is a tremendous asset to any organization.",
+        author: "Munendra Sreerama",
+        company: "Associate Director | Prodapt",
+        initials: "MS"
     }
 ];

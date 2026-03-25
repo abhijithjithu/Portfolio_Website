@@ -26,7 +26,7 @@ const PageTransition = ({ children }) => (
 const CONTACT_EMAIL = 'jithuabhijith999@gmail.com';
 const CONTACT_PHONE = '+91 7306902848';
 const LINKEDIN_URL = 'https://linkedin.com/in/abhijithp99';
-const GITHUB_URL = 'https://github.com/yourhandle'; // TODO: replace with real GitHub
+const GITHUB_URL = 'https://github.com/abhijithjithu';
 // ─────────────────────────────────────────────────────────────
 
 // Smooth scroll helper — works regardless of Router basename
@@ -67,7 +67,7 @@ const ScrollToTop = () => {
 };
 
 // Section IDs that match the anchor hrefs
-const SECTION_IDS = ['pitch', 'experience', 'skills', 'gallery', 'simulator'];
+const SECTION_IDS = ['pitch', 'experience', 'skills', 'gallery', 'testimonials', 'contact'];
 
 function App() {
   const [isDark, setIsDark] = useState(true);
@@ -75,11 +75,10 @@ function App() {
   const [activeSection, setActiveSection] = useState('');
   const [scrolled, setScrolled] = useState(false);
 
-  // Restore saved theme on mount
+  // Restore saved theme on mount — default is dark
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const dark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+    const dark = savedTheme ? savedTheme === 'dark' : true; // default to dark
     setIsDark(dark);
     document.documentElement.classList.toggle('dark', dark);
   }, []);
@@ -133,7 +132,8 @@ function App() {
     { label: 'Experience', id: 'experience' },
     { label: 'Skills', id: 'skills' },
     { label: 'Projects', id: 'gallery' },
-    { label: 'Case Study', id: 'simulator' },
+    { label: 'Testimonials', id: 'testimonials' },
+    { label: 'Contact', id: 'contact' },
   ];
 
   return (

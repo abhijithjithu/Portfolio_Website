@@ -1,11 +1,12 @@
 import DynamicPitch from '../components/DynamicPitch';
-import CaseStudySimulator from '../components/CaseStudySimulator';
+
 import ExperienceTimeline from '../components/ExperienceTimeline';
 import SkillsMatrix from '../components/SkillsMatrix';
 import ProjectGallery from '../components/ProjectGallery';
 import Testimonials from '../components/Testimonials';
 import StatsBanner from '../components/StatsBanner';
 import Education from '../components/Education';
+import ContactForm from '../components/ContactForm';
 import SEO from '../components/SEO';
 
 // ── SVG wave divider ─────────────────────────────────────────
@@ -71,10 +72,7 @@ const Home = () => {
                 <SkillsMatrix />
             </section>
 
-            {/* Case Study Simulator */}
-            <section id="simulator" className="bg-slate-50 dark:bg-slate-950">
-                <CaseStudySimulator />
-            </section>
+
 
             {/* Wave into Projects */}
             <div className="bg-slate-100 dark:bg-slate-900">
@@ -94,6 +92,11 @@ const Home = () => {
             {/* Testimonials */}
             <section id="testimonials" className="bg-slate-50 dark:bg-slate-950">
                 <Testimonials />
+            </section>
+
+            {/* Contact Form */}
+            <section id="contact" className="bg-slate-50 dark:bg-slate-950">
+                <ContactForm />
             </section>
         </main>
     );

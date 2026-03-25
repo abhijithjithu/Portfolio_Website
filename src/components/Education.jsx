@@ -7,8 +7,8 @@ const educationData = [
         degree: 'MBA in Digital Enterprise Management',
         institution: 'Indian Institute of Management Udaipur',
         shortName: 'IIM Udaipur',
-        period: 'Expected April 2026',
-        gpa: '3.5 GPA — Top 5% of Cohort',
+        period: 'Mar 2025 - Mar 2026',
+        gpa: '3.44 GPA — Top 5% of Cohort',
         highlights: [
             'Member of the Technalytics Club',
             'Engineered a secure, MCP-based Enterprise Co-pilot automating M365 workflows',
@@ -28,7 +28,7 @@ const Education = () => {
         <section className="section-pad relative bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
             <div className="section-container">
                 <div className="mb-14">
-                    <p className="section-label">06 / Education</p>
+                    <p className="section-label">02 / Education</p>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}

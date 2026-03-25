@@ -8,26 +8,29 @@ import {
     ShieldCheck,
     GraduationCap,
     Cloud,
-    Bot
+    Bot,
+    Camera,
+    TrendingUp,
+    Smartphone
 } from 'lucide-react';
 
 export const pitchData = {
     "Digital Strategy & Enterprise Management": {
         title: "Bridging Business and Code",
-        description: "Leveraging my MBA from IIM Udaipur, I transform complex enterprise challenges into streamlined, automated processes. I specialize in aligning digital strategy with organizational goals, ensuring that every deployment delivers measurable business impact.",
-        highlights: ["IIM Udaipur MBA", "Process Automation", "Enterprise Strategy"],
+        description: "With an MBA from IIM Udaipur and 3.3+ years at Prodapt and TCS, I have driven 20+ automation initiatives using Agile/Scrum, reducing turnaround time by 60-95%. I align digital strategy with organizational goals, architecting solutions that deliver measurable business impact — from launching RAG GenAI modules that improved SLA compliance by 50% to safeguarding NSE trading systems handling $65B in daily volume.",
+        highlights: ["IIM Udaipur MBA", "20+ Automation Initiatives", "60-95% Efficiency Gains", "$65B Trading Systems"],
         icon: Building2
     },
-    "MLOps & System Architecture": {
-        title: "Architecting Scalable Intelligence",
-        description: "With over 3.3 years of hands-on technical experience, I build resilient cloud infrastructures and robust Python-based MLOps pipelines. I design systems that guarantee high availability, optimize sever uptime, and scale seamlessly under load.",
-        highlights: ["3.3+ Years Exp", "Python & MLOps", "Cloud Infrastructure"],
+    "AI, Data Science & Product": {
+        title: "From Data to Decisions",
+        description: "I build intelligent systems that turn complex data into actionable strategy. From engineering Customer Lifetime Value models and Survival Analysis pipelines to architecting a secure MCP-based Enterprise Co-pilot for Deloitte that achieved a 28:1 ROI — I combine deep technical skill in Python, GenAI, and MLOps with a product manager's eye for user-centric design and market impact.",
+        highlights: ["Python & GenAI", "28:1 ROI Co-pilot", "MLOps Pipelines", "Product Strategy"],
         icon: ServerCog
     },
-    "Entrepreneurship & Product": {
+    "Entrepreneurship & Innovation": {
         title: "Building from Zero to One",
-        description: "Driven by a builder's mindset, I've hands-on experience co-founding ventures like the digital brand PlaySekai. I understand agile product development, user-centric design, and market fit.",
-        highlights: ["PlaySekai Co-founder", "Agile Product Dev", "User-Centric Design"],
+        description: "Driven by a builder's mindset, I co-founded PlaySekai and designed YuvaPlay — a mobile-first platform unlocking rural sports talent. I thrive at the intersection of strategy and execution: from conducting user research and defining product roadmaps to shipping MVPs and scaling communities. I bring the same entrepreneurial energy to every team I join.",
+        highlights: ["PlaySekai Co-founder", "YuvaPlay Product Lead", "User Research to MVP", "Community Scaling"],
         icon: Lightbulb
     }
 };
@@ -61,7 +64,7 @@ export const projectData = [
                     'Source: CDNow dataset (single acquisition cohort)',
                     'Transactions: 69,659',
                     'Customers: 23,570',
-                    'Time Period: Jan 1997 â€“ Jun 1998'
+                    'Time Period: Jan 1997 – Jun 1998'
                 ]
             },
             { type: 'paragraph', text: '**Key Fields:** Customer ID, Transaction Date, Purchase Quantity, Revenue' },
@@ -76,7 +79,7 @@ export const projectData = [
             },
             { type: 'subtitle', text: '2. CLV Modeling' },
             { type: 'paragraph', text: 'Used a retention-based infinite horizon model:' },
-            { type: 'formula', equation: 'CLV = (Margin Ã— AvgMonthlyRevenue Ã— Retention) / (1 + DiscountRate - Retention)' },
+            { type: 'formula', equation: 'CLV = (Margin × AvgMonthlyRevenue × Retention) / (1 + DiscountRate - Retention)' },
             {
                 type: 'list', items: [
                     'Contribution margin: 30%',
@@ -112,13 +115,13 @@ export const projectData = [
                     ['Infrequent Buyers', '0.48']
                 ]
             },
-            { type: 'callout', text: 'Frequent buyers generate ~6Ã— more value' },
+            { type: 'callout', text: 'Frequent buyers generate ~6× more value' },
 
             { type: 'subtitle', text: 'Retention Drives CLV More Than Margin' },
             {
                 type: 'list', items: [
-                    'Increasing retention â†’ ~49% CLV increase',
-                    'Increasing margin â†’ ~33% CLV increase'
+                    'Increasing retention → ~49% CLV increase',
+                    'Increasing margin → ~33% CLV increase'
                 ]
             },
             { type: 'callout', text: 'Retention has a compounding effect, making it the most powerful growth lever' },
@@ -134,7 +137,7 @@ export const projectData = [
                     'Offer personalized recommendations'
                 ]
             },
-            { type: 'callout', text: 'Moving users from 1 â†’ 2 purchases drastically increases CLV' },
+            { type: 'callout', text: 'Moving users from 1 → 2 purchases drastically increases CLV' },
             { type: 'subtitle', text: '2. Invest in Loyalty Programs for High-Value Customers' },
             {
                 type: 'list', items: [
@@ -303,7 +306,7 @@ export const projectData = [
             {
                 type: 'list', items: [
                     'Zero-Trust Architecture: The AI model is structurally prevented from accessing raw business data.',
-                    'Local Execution: All file operations run on local Python libraries â€” no data leaves the secure environment.',
+                    'Local Execution: All file operations run on local Python libraries — no data leaves the secure environment.',
                     'Tool-Level Access Control: MCP enforces a strict allowlist of operations the AI can invoke.',
                     'Audit-Ready: Every tool invocation is logged for compliance and traceability.'
                 ]
@@ -324,6 +327,255 @@ export const projectData = [
         icon: MonitorPlay,
         color: "from-purple-600/20 to-pink-600/20",
         border: "border-purple-500/30",
+    },
+    {
+        id: "capstone-simulation",
+        company: "Capstone Strategy",
+        role: "Executive Strategy Simulator",
+        title: "Strategic Enterprise Management: Capstone Business Simulation",
+        description: "Managed a multi-million-dollar virtual enterprise through 8 fiscal years, executing a Broad Differentiation Strategy to secure #1 market share, stock price, and profitability.",
+        tags: ["Business Strategy", "Financial Analysis", "Operations Management", "TQM"],
+        icon: TrendingUp,
+        color: "from-blue-600/20 to-indigo-600/20",
+        border: "border-indigo-500/30",
+        content: [
+            { type: 'section_title', text: 'Executive Summary' },
+            { type: 'paragraph', text: 'In the Capstone Business Simulation, I acted as the sole executive managing a multi-million-dollar virtual enterprise, "Erie," through 8 fiscal years of intense market competition against five rival firms. By executing a Broad Differentiation Strategy with rigorous financial discipline and operational efficiency, I secured market dominance for the company.' },
+            
+            { type: 'subtitle', text: 'By Round 8 (Dec 31, 2033), I achieved:' },
+            {
+                type: 'list', items: [
+                    '#1 Market Share: Captured 28.09% of the total industry.',
+                    '#1 Stock Price: Reached an industry-leading closing stock price of $280.37.',
+                    '#1 Profitability: Generated $78.2 million in Net Profit with a Cumulative Profit of $255.4 million.',
+                    'Zero Emergency Loans: Maintained absolute financial solvency throughout the simulation.'
+                ]
+            },
+            
+            { type: 'section_title', text: 'Strategic Approach: Broad Differentiation' },
+            { type: 'paragraph', text: 'My strategy centered on maintaining a strong presence across all five market segments (Traditional, Low End, High End, Performance, and Size) while aggressively investing in R&D and Total Quality Management (TQM) to command premium pricing and reduce variable costs.' },
+            
+            { type: 'subtitle', text: '1. Product & R&D Strategy' },
+            { type: 'paragraph', text: 'I continuously updated my product portfolio to meet the exact "Ideal Spot" criteria for age, performance, and size across all segments.' },
+            {
+                type: 'list', items: [
+                    'High-End Dominance: My product Echo captured over 32% of the High-End market, supported by R&D that kept its age low (1.4 years) and MTBF at the maximum required (25,000).',
+                    'Performance & Size Leadership: I introduced and managed products like Edge and Egg, which dominated their segments with 39.3% and 43.7% market share respectively, proving my ability to forecast and capitalize on emerging market demands.'
+                ]
+            },
+
+            { type: 'subtitle', text: '2. Operational Excellence & Automation' },
+            { type: 'paragraph', text: 'To support my broad differentiation without sacrificing margins, I aggressively invested in plant automation.' },
+            {
+                type: 'list', items: [
+                    'Margin Expansion: Increased automation levels to 10.0 for mature products like Eat and Ebb.',
+                    'Cost Control: This strategy resulted in an industry-leading Contribution Margin of 54.2%, significantly outpacing my closest competitor, Baldwin (35.4%).'
+                ]
+            },
+
+            { type: 'subtitle', text: '3. Financial Management & TQM' },
+            { type: 'paragraph', text: 'I utilized a balanced approach to capital structure and aggressive investment in operational efficiencies.' },
+            {
+                type: 'list', items: [
+                    'TQM Investments: I heavily funded TQM initiatives resulting in a 14.4% demand increase, a 14.0% reduction in labor costs, and an 11.8% reduction in material costs.',
+                    'Shareholder Value: My rigorous financial management yielded a Return on Equity (ROE) of 27.8% and an Earnings Per Share (EPS) of $34.34.'
+                ]
+            },
+
+            { type: 'section_title', text: 'Competitive Analysis & Market Outcomes' },
+            { type: 'paragraph', text: 'A continuous analysis of my primary competitor, Ferris, allowed me to exploit their weaknesses in the Low-End and Traditional segments.' },
+            { type: 'image', src: '/assets/capstone-market-share.png', alt: 'Market Share by Segment Bar Chart', caption: 'Market Share by Segment Bar Chart (Page 10)' },
+            { type: 'paragraph', text: 'While Ferris attempted a similar strategy, my superior forecasting and capacity management allowed me to out-produce and out-sell them, particularly in the Size segment where my product Egg achieved 43.7% actual market share compared to Ferris\'s Fume at 21.3%.' },
+            { type: 'image', src: '/assets/capstone-financial-stats.png', alt: 'Selected Financial Statistics Table', caption: 'Selected Financial Statistics Table (Page 1)' },
+
+            { type: 'section_title', text: 'Tools & Skills Applied' },
+            { type: 'tags', items: ['Financial Analysis', 'Cash Flow forecasting', 'Income Statement analysis', 'Margin optimization', 'Operations Management', 'Capacity planning', 'Automation investment (ROI)', 'Strategic Planning', 'Competitor benchmarking'] },
+
+            { type: 'section_title', text: 'Key Takeaways' },
+            { type: 'callout', text: 'The Capstone simulation provided hands-on experience in cross-functional decision-making. The success of Erie demonstrates my ability to synthesize complex data—from R&D coordinates to financial leverage—into a cohesive, winning business strategy.' }
+        ]
+    },
+    {
+        id: "bagore-ki-haveli",
+        company: "Bagore Ki Haveli",
+        role: "Marketing & Strategy Consultant",
+        title: "Revitalizing Heritage Tourism at Bagore Ki Haveli",
+        description: "Executing a strategic communication and marketing overhaul for an 18th-century landmark in Udaipur, positioning it as a 'Dual-Attraction Experience' to boost domestic footfall and modernize digital engagement.",
+        tags: ["Digital Marketing", "Strategy", "Heritage Tourism", "Social Media", "UGC"],
+        icon: Camera,
+        color: "from-amber-600/20 to-orange-600/20",
+        border: "border-orange-500/30",
+        content: [
+            { type: 'section_title', text: 'Executive Summary' },
+            { type: 'paragraph', text: 'This project focuses on a strategic communication and marketing overhaul for Bagore Ki Haveli, an 18th-century landmark in Udaipur. By positioning the site as a "Dual-Attraction Experience"—balancing a daytime heritage museum with the renowned evening Dharohar Dance Show—the strategy aims to transform visitor perception from a static museum visit to an immersive cultural journey.' },
+            
+            { type: 'section_title', text: 'The Challenge' },
+            { type: 'paragraph', text: 'Despite its rich history and status as the #2 attraction in Udaipur on TripAdvisor, there was a need to:' },
+            {
+                type: 'list', items: [
+                    'Boost domestic footfall by 25% by Q4 2025',
+                    'Modernize digital engagement to reach younger, social-media-focused demographics',
+                    'Diversify revenue streams through new visitor experiences like craft workshops'
+                ]
+            },
+
+            { type: 'section_title', text: 'Strategic Approach' },
+            { type: 'subtitle', text: '1. Target Audience Segmentation' },
+            { type: 'paragraph', text: 'To ensure high-impact communication, the strategy identifies three core segments:' },
+            {
+                type: 'list', items: [
+                    'Domestic Cultural Tourists: Families and history lovers seeking educational yet affordable experiences.',
+                    'Photography Enthusiasts: Amateurs and pros looking for exclusive "Golden Hour" access and high-aesthetic spots.',
+                    'Student Groups: University students focusing on arts and history through guided tours and workshops.'
+                ]
+            },
+
+            { type: 'subtitle', text: '2. Creative Execution: "Capturing Royalty"' },
+            { type: 'paragraph', text: 'The digital campaign leverages the visual appeal of the Haveli:' },
+            {
+                type: 'list', items: [
+                    'Campaign: #Bagorekihaveli focused on Instagram and YouTube shorts.',
+                    'Engagement: Micro-influencer collaborations and behind-the-scenes "Instagram Lives".',
+                    'Experience: Introducing "Golden Hour" photographic access and live craft workshops (miniature painting and puppet-making).'
+                ]
+            },
+
+            { type: 'section_title', text: 'Marketing Mix & Resource Allocation' },
+            { type: 'paragraph', text: 'The budget is strategically split to prioritize digital growth while maintaining traditional industry partnerships:' },
+            {
+                type: 'list', items: [
+                    'Digital (40%): Weekly UGC posts, polls, and influencer collaborations.',
+                    'Partnerships (30%): Integrated brochures with major platforms like MakeMyTrip and Yatra.',
+                    'Technology & Contingency (30%): Tech upgrades and a safety fund.'
+                ]
+            },
+
+            { type: 'section_title', text: 'KPIs & Expected Impact' },
+            { type: 'paragraph', text: 'The success of the project is measured against high-growth metrics:' },
+            {
+                type: 'table',
+                headers: ['Metric', 'Goal', 'Tracking Method'],
+                rows: [
+                    ['Domestic Visits', '+25% Growth', 'Google Analytics'],
+                    ['Dance Show Occupancy', '85% Capacity', 'Ticket Scans'],
+                    ['Visitor Awareness', '70% from Social Media', 'IG/YouTube Analytics'],
+                    ['Digital Growth', '+20K Monthly UGC Reels', 'Branded Hashtags']
+                ]
+            },
+
+            { type: 'section_title', text: 'Key Takeaways' },
+            { type: 'callout', text: 'This project demonstrates the ability to blend historical preservation with modern digital marketing, ensuring that cultural heritage remains relevant and financially sustainable in a competitive tourism market.' }
+        ]
+    },
+    {
+        id: "yuvaplay",
+        company: "YuvaPlay",
+        role: "Product Manager",
+        title: "YuvaPlay – Unlocking Rural Sports Talent in India",
+        description: "Designed a mobile-first platform to discover, train, and showcase hidden sports talent in rural India, bridging the gap between aspiring athletes and structured opportunities.",
+        tags: ["Product Management", "Mobile-First", "User Research", "Agile", "UX Design"],
+        icon: Smartphone,
+        color: "from-green-600/20 to-emerald-600/20",
+        border: "border-emerald-500/30",
+        content: [
+            { type: 'section_title', text: 'Overview' },
+            { type: 'paragraph', text: 'YuvaPlay is a mobile-first platform designed to discover, train, and showcase hidden sports talent in rural India. The platform bridges the gap between aspiring athletes and structured opportunities by enabling video-based talent discovery, remote coaching, and tournament access.' },
+            { type: 'callout', text: 'Inspired by a real problem: Thousands of talented rural athletes lack exposure, coaching, and pathways to grow.' },
+            
+            { type: 'section_title', text: 'Problem Statement' },
+            { type: 'paragraph', text: 'In rural India, young athletes face three critical barriers:' },
+            {
+                type: 'list', items: [
+                    'No access to professional coaching',
+                    'No platform to showcase talent',
+                    'No structured pathway to progress'
+                ]
+            },
+            { type: 'paragraph', text: 'As a result, high-potential athletes remain undiscovered, limiting both individual growth and national sports development.' },
+            { type: 'image', src: '/assets/yuvaplay-problem-statement.png', alt: 'Problem Statement Visual', caption: 'Problem Statement Visual' },
+
+            { type: 'section_title', text: 'User Research & Insights' },
+            { type: 'paragraph', text: 'We conducted surveys and user analysis to deeply understand the target segment.' },
+            { type: 'subtitle', text: 'Key Insights:' },
+            {
+                type: 'list', items: [
+                    '60% users are aged 13–18 → Clear target segment',
+                    'Top sports: Kabaddi, Cricket, Running',
+                    '70% lack coaching access',
+                    '80% want video-based feedback from coaches',
+                    'Most demanded feature: "Show my talent + Talk to coach"'
+                ]
+            },
+            { type: 'image', src: '/assets/yuvaplay-survey-analysis.png', alt: 'Survey Analysis Charts', caption: 'Survey Analysis Charts' },
+
+            { type: 'subtitle', text: 'User Personas' },
+            {
+                type: 'list', items: [
+                    'The Aspiring Athlete (Ravi - Age 16): Goal is to get recognized at state/national level. Pain points include no exposure, no coaching, and financial constraints.',
+                    'The Rural Coach (Pooja - Age 38): Goal is to help students gain visibility. Pain points include no structured tracking system and no connection to national platforms.'
+                ]
+            },
+            { type: 'paragraph', text: 'These personas guided product decisions across features and UX.' },
+            { type: 'image', src: '/assets/yuvaplay-user-personas.png', alt: 'User Personas', caption: 'User Personas' },
+
+            { type: 'section_title', text: 'Solution' },
+            { type: 'paragraph', text: 'YuvaPlay provides a simple, scalable digital ecosystem for rural sports.' },
+            { type: 'subtitle', text: 'Core Features:' },
+            {
+                type: 'list', items: [
+                    'Video Upload System – Showcase talent easily',
+                    'AI + Coach Feedback – Improve performance',
+                    'Tournament Discovery – Apply to events',
+                    'Progress Tracking Dashboard',
+                    'Local Language Support',
+                    'Low-data, mobile-first UX'
+                ]
+            },
+
+            { type: 'subtitle', text: 'User Journey' },
+            {
+                type: 'table',
+                headers: ['Athlete Journey', 'Coach Journey'],
+                rows: [
+                    ['Discover app', 'Register & onboard'],
+                    ['Upload performance videos', 'Add/manage students'],
+                    ['Receive coach feedback', 'Review videos'],
+                    ['Track improvement', 'Recommend top talent'],
+                    ['Apply for tournaments', ' ']
+                ]
+            },
+            { type: 'paragraph', text: 'This ensures end-to-end value creation for both sides of the ecosystem.' },
+            { type: 'image', src: '/assets/yuvaplay-athlete-journey.png', alt: 'Athlete User Journey Map', caption: 'Athlete Journey Map' },
+            { type: 'image', src: '/assets/yuvaplay-coach-journey.png', alt: 'Coach User Journey Map', caption: 'Coach Journey Map' },
+
+            { type: 'section_title', text: 'Product Development Approach' },
+            { type: 'paragraph', text: 'We followed an Agile methodology featuring iterative sprint planning, feature prioritization based on user needs, and continuous feedback loops.' },
+            { type: 'image', src: '/assets/yuvaplay-agile-workflow.png', alt: 'Agile Board / Workflow', caption: 'Agile Board / Workflow' },
+
+            { type: 'section_title', text: 'Wireframes & Prototype' },
+            { type: 'paragraph', text: 'Designed a mobile-first interface focused on simplicity and accessibility. Key screens include Onboarding & language selection, Video upload & progress tracking, Athlete profile dashboard, and Coach review panel.' },
+            { type: 'image', src: '/assets/yuvaplay-wireframes.png', alt: 'Wireframes', caption: 'Wireframes' },
+            { type: 'callout', text: 'Live Demo: https://yuvaplay.lovable.app/' },
+
+            { type: 'section_title', text: 'Impact & Value' },
+            {
+                type: 'list', items: [
+                    'For Athletes: Increased visibility, Access to coaching, Clear growth pathway',
+                    'For Coaches: Better talent tracking, Structured evaluation, Wider recognition',
+                    'For Ecosystem: Unlocks grassroots talent, Builds scalable sports pipeline'
+                ]
+            },
+
+            { type: 'section_title', text: 'Key Learnings' },
+            {
+                type: 'list', items: [
+                    'User-first design is critical in low-resource environments.',
+                    'Video is the most powerful medium for skill-based evaluation.',
+                    'Simplicity > Features for rural adoption.',
+                    'Ecosystem thinking (athletes + coaches) drives long-term value.'
+                ]
+            }
+        ]
     }
 ];
 
@@ -332,8 +584,8 @@ export const experienceData = [
         id: "iim",
         role: "MBA in Digital Enterprise Management",
         company: "IIM Udaipur",
-        duration: "Expected April 2026",
-        description: "Maintained a 3.5 GPA, ranking in the top 5% of the cohort. Member of the Technalytics Club. During the MBA, engineered a secure MCP-based Enterprise Co-pilot — a project in collaboration with Deloitte — to automate M365 workflows without exposing sensitive data to LLMs.",
+        duration: "Mar 2025 - Mar 2026",
+        description: "Maintained a 3.44 GPA, ranking in the top 5% of the cohort. Member of the Technalytics Club. During the MBA, engineered a secure MCP-based Enterprise Co-pilot — a project in collaboration with Deloitte — to automate M365 workflows without exposing sensitive data to LLMs.",
         technologies: ["Digital Enterprise Management", "MCP", "AI Security", "M365 Workflows"],
         icon: GraduationCap
     },

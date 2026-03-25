@@ -34,7 +34,7 @@ const SkillsMatrix = () => {
 
             <div className="section-container relative z-10">
                 <div className="mb-14">
-                    <p className="section-label">02 / Capabilities</p>
+                    <p className="section-label">03 / Capabilities</p>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}

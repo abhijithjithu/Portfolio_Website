@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { pitchData } from '../data';
-import { User } from 'lucide-react';
+import { User, Linkedin, Github } from 'lucide-react';
+import { LINKEDIN_URL, GITHUB_URL } from '../App';
 
 // ── Typewriter hook ──────────────────────────────────────────
 const ROLES = [
-    'Digital Transformation Strategist',
-    'MLOps & Cloud Engineer',
     'MBA · IIM Udaipur',
-    'Product & AI Consultant',
+    'Product Analyst',
+    'Software Engineer',
+    'Digital Transformation Strategist',
 ];
 
 const useTypewriter = (items, typingSpeed = 60, pauseMs = 2000, deletingSpeed = 35) => {
@@ -224,7 +225,7 @@ const DynamicPitch = () => {
                             animate="visible"
                             className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed mb-10"
                         >
-                            I architect enterprise systems, build MLOps pipelines, and lead cross-functional teams to deliver measurable business impact.
+                            I turn complex business problems into automated, scalable solutions — 20+ initiatives shipped, 60-95% efficiency gains delivered, and a 28:1 ROI on an AI co-pilot built for Deloitte.
                         </motion.p>
 
                         {/* CTA buttons */}
@@ -244,7 +245,7 @@ const DynamicPitch = () => {
                                 View Projects
                             </motion.button>
                             <motion.a
-                                href="/assets/resume.pdf"
+                                href={`${import.meta.env.BASE_URL}assets/resume.pdf`}
                                 download
                                 whileHover={{ scale: 1.04, y: -2 }}
                                 whileTap={{ scale: 0.97 }}
@@ -252,6 +253,35 @@ const DynamicPitch = () => {
                             >
                                 Download Resume
                             </motion.a>
+                        </motion.div>
+
+                        {/* Social links */}
+                        <motion.div
+                            custom={0.75}
+                            variants={fadeUp}
+                            initial="hidden"
+                            animate="visible"
+                            className="flex items-center gap-3 mt-4"
+                        >
+                            <a
+                                href={LINKEDIN_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="LinkedIn"
+                                className="p-2.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 transition-all border border-slate-200 dark:border-slate-700"
+                            >
+                                <Linkedin className="w-4 h-4" />
+                            </a>
+                            <a
+                                href={GITHUB_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="GitHub"
+                                className="p-2.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700"
+                            >
+                                <Github className="w-4 h-4" />
+                            </a>
+                            <span className="text-xs text-slate-400 dark:text-slate-500 font-medium">Let's connect</span>
                         </motion.div>
                     </div>
 

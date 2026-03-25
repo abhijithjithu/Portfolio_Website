@@ -13,7 +13,7 @@ const CaseStudySimulator = () => {
         <section className="section-pad relative bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
             <div className="section-container">
                 <div className="mb-14 text-center">
-                    <p className="section-label justify-center">03 / Interactive Demo</p>
+                    <p className="section-label justify-center">04 / Interactive Demo</p>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}

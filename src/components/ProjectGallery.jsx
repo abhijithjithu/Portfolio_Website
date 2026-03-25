@@ -9,7 +9,6 @@ const ALL_LABEL = 'All';
 const CATEGORIES = [
     ALL_LABEL,
     'ML / AI',
-    'Cloud & DevOps',
     'Product',
     'Analytics',
 ];
@@ -59,7 +58,7 @@ const ProjectGallery = () => {
                 {/* Section header */}
                 <div className="mb-10 flex flex-col md:flex-row justify-between md:items-end gap-6">
                     <div>
-                        <p className="section-label">04 / Work</p>
+                        <p className="section-label">05 / Work</p>
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}

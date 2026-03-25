@@ -21,7 +21,7 @@ const Testimonials = () => {
 
             <div className="section-container relative z-10">
                 <div className="mb-14 text-center">
-                    <p className="section-label justify-center">05 / Social Proof</p>
+                    <p className="section-label justify-center">06 / Social Proof</p>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}

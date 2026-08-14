@@ -1,37 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
+import { EASE } from '../lib/motion';
 
 const BackToTop = () => {
-    const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
 
-    useEffect(() => {
-        const handleScroll = () => setVisible(window.scrollY > 400);
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 600);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-    const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    return (
-        <AnimatePresence>
-            {visible && (
-                <motion.button
-                    initial={{ opacity: 0, scale: 0.6, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.6, y: 20 }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 22 }}
-                    onClick={scrollToTop}
-                    aria-label="Back to top"
-                    className="fixed bottom-8 right-8 z-50 w-11 h-11 rounded-full bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 group"
-                    whileHover={{ y: -3 }}
-                    whileTap={{ scale: 0.92 }}
-                >
-                    <ArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
-                </motion.button>
-            )}
-        </AnimatePresence>
-    );
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0 })}
+          aria-label="Back to top"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 8 }}
+          transition={{ duration: 0.22, ease: EASE }}
+          className="u-focus fixed bottom-8 right-8 z-40 inline-flex h-10 w-10 items-center justify-center rounded-md border border-line bg-surface text-ink-muted shadow-md transition-colors duration-fast ease-smooth hover:border-line-strong hover:text-ink"
+        >
+          <ArrowUp className="h-4 w-4" aria-hidden="true" />
+        </motion.button>
+      )}
+    </AnimatePresence>
+  );
 };
 
 export default BackToTop;

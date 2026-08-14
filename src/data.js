@@ -2,39 +2,53 @@ import {
     Building2,
     ServerCog,
     Lightbulb,
-    Briefcase,
-    MonitorPlay,
-    Activity,
     ShieldCheck,
     GraduationCap,
-    Cloud,
-    Bot,
-    Camera,
-    TrendingUp,
-    Smartphone
+    Cloud
 } from 'lucide-react';
 
-export const pitchData = {
-    "Digital Strategy & Enterprise Management": {
+/**
+ * An array rather than an object keyed by prose. The labels used to double
+ * as identity keys, so editing a tab's wording silently changed the thing
+ * it identified.
+ */
+export const pitchData = [
+    {
+        id: "strategy",
+        label: "Digital Strategy & Enterprise Management",
         title: "Bridging Business and Code",
         description: "With an MBA from IIM Udaipur and 3.3+ years at Prodapt and TCS, I have driven 20+ automation initiatives using Agile/Scrum, reducing turnaround time by 60-95%. I align digital strategy with organizational goals, architecting solutions that deliver measurable business impact — from launching RAG GenAI modules that improved SLA compliance by 50% to safeguarding NSE trading systems handling $65B in daily volume.",
         highlights: ["IIM Udaipur MBA", "20+ Automation Initiatives", "60-95% Efficiency Gains", "$65B Trading Systems"],
         icon: Building2
     },
-    "AI, Data Science & Product": {
+    {
+        id: "ai-data",
+        label: "AI, Data Science & Product",
         title: "From Data to Decisions",
         description: "I build intelligent systems that turn complex data into actionable strategy. From engineering Customer Lifetime Value models and Survival Analysis pipelines to architecting a secure MCP-based Enterprise Co-pilot for Deloitte that achieved a 28:1 ROI — I combine deep technical skill in Python, GenAI, and MLOps with a product manager's eye for user-centric design and market impact.",
         highlights: ["Python & GenAI", "28:1 ROI Co-pilot", "MLOps Pipelines", "Product Strategy"],
         icon: ServerCog
     },
-    "Entrepreneurship & Innovation": {
+    {
+        id: "entrepreneurship",
+        label: "Entrepreneurship & Innovation",
         title: "Building from Zero to One",
         description: "Driven by a builder's mindset, I co-founded PlaySekai and designed YuvaPlay — a mobile-first platform unlocking rural sports talent. I thrive at the intersection of strategy and execution: from conducting user research and defining product roadmaps to shipping MVPs and scaling communities. I bring the same entrepreneurial energy to every team I join.",
         highlights: ["PlaySekai Co-founder", "YuvaPlay Product Lead", "User Research to MVP", "Community Scaling"],
         icon: Lightbulb
     }
-};
+];
 
+/**
+ * `kind` and `categories` are authored, not inferred. The old gallery
+ * derived filter categories by substring-matching joined tag strings, which
+ * could emit a category the filter bar didn't list, and dropped any project
+ * that matched no keyword out of every tab except "All".
+ *
+ * `year` is intentionally absent: it is not recoverable from the existing
+ * content, and the work index omits the column for any project without one.
+ * Add `year: "2025"` to a project and it will render.
+ */
 export const projectData = [
     {
         id: "clv-analysis",
@@ -43,9 +57,9 @@ export const projectData = [
         title: "Customer Lifetime Value (CLV) Analysis",
         description: "Analyzed a real-world transaction dataset (CDNow) to estimate Customer Lifetime Value (CLV), identifying that frequent buyers generate ~6x more value and proving retention drives CLV significantly more than margin.",
         tags: ["Python", "Customer Analytics", "CLV Modeling", "Cohort Analysis"],
-        icon: Activity,
-        color: "from-blue-600/20 to-purple-600/20",
-        border: "border-blue-500/30",
+        kind: "Analysis",
+        categories: ["Data & AI"],
+        hasCaseStudy: true,
         content: [
             { type: 'section_title', text: 'Problem Statement' },
             { type: 'paragraph', text: 'A key challenge in retail analytics is understanding which customers drive long-term profitability. While acquisition brings in new users, businesses often struggle to quantify:' },
@@ -175,9 +189,9 @@ export const projectData = [
         title: "Predicting Employee Attrition using Survival Analysis",
         description: "Implemented an advanced Survival Analysis (CoxPH) model to predict when employees are likely to leave and what factors influence that timeline, moving beyond simple binary classification.",
         tags: ["Python", "Survival Analysis", "CoxPH", "Decision Trees", "HR Analytics"],
-        icon: Activity,
-        color: "from-blue-600/20 to-teal-600/20",
-        border: "border-teal-500/30",
+        kind: "Analysis",
+        categories: ["Data & AI"],
+        hasCaseStudy: true,
         content: [
             { type: 'section_title', text: 'Executive Summary' },
             { type: 'paragraph', text: 'Employee turnover (attrition) is a significant cost for modern organizations, impacting both culture and the bottom line. Traditional "churn" models only predict if an employee will leave. This project goes a step further by using Survival Analysis to predict when they are likely to leave, providing actionable timelines for HR intervention.' },
@@ -205,13 +219,13 @@ export const projectData = [
             { type: 'paragraph', text: 'The following visualizations represent the core findings of the analysis and the predictive capabilities of the models.' },
 
             { type: 'subtitle', text: 'Hazard Ratios (Cox Proportional-Hazards Model)' },
-            { type: 'image', src: '/assets/hazard-ratio-plot.png', alt: 'Hazard Ratios Plot', caption: 'Analysis: This visualization displays the exponential coefficients (Hazard Ratios) for each feature. A Hazard Ratio greater than 1 indicates an increased risk of attrition, while a ratio less than 1 suggests a protective effect. This allows HR to pinpoint exactly which variables—such as overtime or low job satisfaction—are driving employees to leave.' },
+            { type: 'image', src: '/assets/hazard-ratio-plot.jpg', alt: 'Hazard Ratios Plot', caption: 'Analysis: This visualization displays the exponential coefficients (Hazard Ratios) for each feature. A Hazard Ratio greater than 1 indicates an increased risk of attrition, while a ratio less than 1 suggests a protective effect. This allows HR to pinpoint exactly which variables—such as overtime or low job satisfaction—are driving employees to leave.' },
 
             { type: 'subtitle', text: 'Decision Tree Analysis' },
-            { type: 'image', src: '/assets/decision-tree-diagram.png', alt: 'Decision Tree Diagram', caption: 'Analysis: To complement the statistical models, I utilized a Decision Tree to map out the logical hierarchy of attrition factors. This provides a transparent, easy-to-read flowchart of employee behavior, identifying specific "profiles" of at-risk staff based on their tenure and role.' },
+            { type: 'image', src: '/assets/decision-tree-diagram.jpg', alt: 'Decision Tree Diagram', caption: 'Analysis: To complement the statistical models, I utilized a Decision Tree to map out the logical hierarchy of attrition factors. This provides a transparent, easy-to-read flowchart of employee behavior, identifying specific "profiles" of at-risk staff based on their tenure and role.' },
 
             { type: 'subtitle', text: 'Predicted Survival Curves' },
-            { type: 'image', src: '/assets/survival-curves-graph.png', alt: 'Predicted Survival Curves graph', caption: 'Analysis: This graph demonstrates the model\'s ability to forecast the future. By plotting the survival probability over time for specific employee profiles, we can visualize how the likelihood of staying changes month-over-month, allowing for personalized retention strategies.' },
+            { type: 'image', src: '/assets/survival-curves-graph.jpg', alt: 'Predicted Survival Curves graph', caption: 'Analysis: This graph demonstrates the model\'s ability to forecast the future. By plotting the survival probability over time for specific employee profiles, we can visualize how the likelihood of staying changes month-over-month, allowing for personalized retention strategies.' },
 
             { type: 'section_title', text: 'Key Insights & Findings' },
             {
@@ -238,9 +252,11 @@ export const projectData = [
         title: "Enterprise System Co-Pilot: Secure M365 Automation",
         description: "Architected a secure AI co-pilot using the Model Context Protocol (MCP) to automate end-to-end Microsoft 365 workflows — generating Word reports, PowerPoint decks, and Excel sheets — without exposing proprietary data to external LLMs.",
         tags: ["Python", "FastAPI", "React 19", "MCP", "Google Gemini", "M365", "GenAI"],
-        icon: Bot,
-        color: "from-violet-600/20 to-blue-600/20",
-        border: "border-violet-500/30",
+        kind: "System",
+        categories: ["Data & AI"],
+        featured: true,
+        cover: "/assets/mcp-chat-ui.png",
+        hasCaseStudy: true,
         content: [
             { type: 'section_title', text: 'Executive Summary' },
             { type: 'paragraph', text: 'Business Analysts at enterprise organisations lose significant productive hours to low-value, repetitive administrative tasks — merging Excel data, formatting brand-compliant PowerPoint presentations, and drafting reports. This project solves that problem with a secure, AI-powered co-pilot that automates these workflows end-to-end inside a zero-trust architecture, ensuring no sensitive data ever leaves the organisation.' },
@@ -324,9 +340,12 @@ export const projectData = [
         title: "Digital Brand Architect",
         description: "Co-founded and scaled PlaySekai, an emerging digital brand. Orchestrated the go-to-market strategy, product design, and brand identity, fostering a dedicated online community.",
         tags: ["Brand Building", "Growth Strategy", "Product Design"],
-        icon: MonitorPlay,
-        color: "from-purple-600/20 to-pink-600/20",
-        border: "border-purple-500/30",
+        kind: "Venture",
+        categories: ["Product"],
+        // No case study written yet, so the work index lists this without a
+        // link and /project/playsekai redirects home. The page used to invent
+        // metrics ("40% reduction in manual processing") to fill the gap.
+        hasCaseStudy: false,
     },
     {
         id: "capstone-simulation",
@@ -335,9 +354,9 @@ export const projectData = [
         title: "Strategic Enterprise Management: Capstone Business Simulation",
         description: "Managed a multi-million-dollar virtual enterprise through 8 fiscal years, executing a Broad Differentiation Strategy to secure #1 market share, stock price, and profitability.",
         tags: ["Business Strategy", "Financial Analysis", "Operations Management", "TQM"],
-        icon: TrendingUp,
-        color: "from-blue-600/20 to-indigo-600/20",
-        border: "border-indigo-500/30",
+        kind: "Simulation",
+        categories: ["Strategy"],
+        hasCaseStudy: true,
         content: [
             { type: 'section_title', text: 'Executive Summary' },
             { type: 'paragraph', text: 'In the Capstone Business Simulation, I acted as the sole executive managing a multi-million-dollar virtual enterprise, "Erie," through 8 fiscal years of intense market competition against five rival firms. By executing a Broad Differentiation Strategy with rigorous financial discipline and operational efficiency, I secured market dominance for the company.' },
@@ -402,9 +421,9 @@ export const projectData = [
         title: "Revitalizing Heritage Tourism at Bagore Ki Haveli",
         description: "Executing a strategic communication and marketing overhaul for an 18th-century landmark in Udaipur, positioning it as a 'Dual-Attraction Experience' to boost domestic footfall and modernize digital engagement.",
         tags: ["Digital Marketing", "Strategy", "Heritage Tourism", "Social Media", "UGC"],
-        icon: Camera,
-        color: "from-amber-600/20 to-orange-600/20",
-        border: "border-orange-500/30",
+        kind: "Consulting",
+        categories: ["Strategy"],
+        hasCaseStudy: true,
         content: [
             { type: 'section_title', text: 'Executive Summary' },
             { type: 'paragraph', text: 'This project focuses on a strategic communication and marketing overhaul for Bagore Ki Haveli, an 18th-century landmark in Udaipur. By positioning the site as a "Dual-Attraction Experience"—balancing a daytime heritage museum with the renowned evening Dharohar Dance Show—the strategy aims to transform visitor perception from a static museum visit to an immersive cultural journey.' },
@@ -474,9 +493,9 @@ export const projectData = [
         title: "YuvaPlay – Unlocking Rural Sports Talent in India",
         description: "Designed a mobile-first platform to discover, train, and showcase hidden sports talent in rural India, bridging the gap between aspiring athletes and structured opportunities.",
         tags: ["Product Management", "Mobile-First", "User Research", "Agile", "UX Design"],
-        icon: Smartphone,
-        color: "from-green-600/20 to-emerald-600/20",
-        border: "border-emerald-500/30",
+        kind: "Product",
+        categories: ["Product"],
+        hasCaseStudy: true,
         content: [
             { type: 'section_title', text: 'Overview' },
             { type: 'paragraph', text: 'YuvaPlay is a mobile-first platform designed to discover, train, and showcase hidden sports talent in rural India. The platform bridges the gap between aspiring athletes and structured opportunities by enabling video-based talent discovery, remote coaching, and tournament access.' },
@@ -609,35 +628,74 @@ export const experienceData = [
     }
 ];
 
+/**
+ * Grouped by how the tool is actually used rather than scored out of 100.
+ * The previous shape gave every skill a percentage — always a multiple of
+ * five, always between 75 and 95, always sorted descending — which reads as
+ * invented precision. The grouping preserves the same signal honestly.
+ */
 export const skillsData = [
     {
+        id: "cloud",
         domain: "Cloud & DevOps",
-        skills: [
-            { name: "Linux & Bash Scripting", level: 95 },
-            { name: "AWS (Serverless / EC2 / S3)", level: 90 },
-            { name: "Docker & Git", level: 85 },
-            { name: "GCP / Firebase", level: 80 },
-            { name: "Apache Airflow / MinIO", level: 75 },
+        groups: [
+            {
+                label: "Work in daily",
+                items: [
+                    "Linux & Bash Scripting",
+                    "AWS (Serverless / EC2 / S3)",
+                    "Docker & Git"
+                ]
+            },
+            {
+                label: "Working knowledge",
+                items: [
+                    "GCP / Firebase",
+                    "Apache Airflow / MinIO"
+                ]
+            }
         ]
     },
     {
+        id: "data",
         domain: "Data Science & AI",
-        skills: [
-            { name: "Python & SQL", level: 95 },
-            { name: "GenAI / RAG / LLMs", level: 85 },
-            { name: "Machine Learning (PyTorch / YOLO)", level: 80 },
-            { name: "Data Analytics & Survival Analysis", level: 80 },
-            { name: "MLOps & Enterprise Architecture", level: 75 },
+        groups: [
+            {
+                label: "Work in daily",
+                items: [
+                    "Python & SQL",
+                    "GenAI / RAG / LLMs"
+                ]
+            },
+            {
+                label: "Working knowledge",
+                items: [
+                    "Machine Learning (PyTorch / YOLO)",
+                    "Data Analytics & Survival Analysis",
+                    "MLOps & Enterprise Architecture"
+                ]
+            }
         ]
     },
     {
+        id: "product",
         domain: "Product Strategy & Automation",
-        skills: [
-            { name: "Agile / Scrum", level: 95 },
-            { name: "Product Lifecycle & Roadmapping", level: 90 },
-            { name: "RPA (Robocorp) & Process Automation", level: 90 },
-            { name: "Stakeholder & Risk Mgmt (BCP / RCA)", level: 90 },
-            { name: "Requirements Gathering & UAT Facilitation", level: 85 },
+        groups: [
+            {
+                label: "Work in daily",
+                items: [
+                    "Agile / Scrum",
+                    "Product Lifecycle & Roadmapping",
+                    "RPA (Robocorp) & Process Automation",
+                    "Stakeholder & Risk Mgmt (BCP / RCA)"
+                ]
+            },
+            {
+                label: "Working knowledge",
+                items: [
+                    "Requirements Gathering & UAT Facilitation"
+                ]
+            }
         ]
     }
 ];
@@ -647,14 +705,44 @@ export const testimonialsData = [
         id: 1,
         content: "Abhijith is a highly skilled and dedicated professional. He combines technical expertise with a sharp strategic mind. He is Sure to become an outstanding business leader.",
         author: "Asad Nabi",
-        company: "Chief Enterprise Architect | Liberty Latin America",
-        initials: "AN"
+        title: "Chief Enterprise Architect",
+        org: "Liberty Latin America"
     },
     {
         id: 2,
         content: "Abhijith is a highly skilled developer and analyst. His work consistently added immense value to our team. He is a tremendous asset to any organization.",
         author: "Munendra Sreerama",
-        company: "Associate Director | Prodapt",
-        initials: "MS"
+        title: "Associate Director",
+        org: "Prodapt"
     }
+];
+
+/** Lifted out of Education.jsx, where it was hardcoded inside the component. */
+export const educationData = [
+    {
+        id: "iim-udaipur",
+        degree: "MBA in Digital Enterprise Management",
+        institution: "Indian Institute of Management Udaipur",
+        duration: "Mar 2025 - Mar 2026",
+        result: "GPA 3.44 / 4.0",
+        highlights: [
+            "Ranked in the top 5% of the cohort",
+            "Member of the Technalytics Club",
+            "Specialisation in Digital Enterprise Management",
+            "Capstone in collaboration with Deloitte"
+        ],
+        tags: ["Digital Strategy", "Enterprise Architecture", "Business Analytics", "Product Management"]
+    }
+];
+
+/**
+ * Display-ready strings rather than the old { value, suffix, decimals }
+ * shape, which existed only to drive a count-up animation.
+ * `note` carries the qualifier a bare number needs to not read as a boast.
+ */
+export const factsData = [
+    { id: "experience", value: "3.3+", label: "Years experience", note: "Prodapt · TCS" },
+    { id: "initiatives", value: "20+", label: "Automation initiatives", note: "Agile / Scrum delivery" },
+    { id: "efficiency", value: "60-95%", label: "Turnaround reduction", note: "Across shipped automations" },
+    { id: "volume", value: "$65B", label: "Daily trading volume", note: "NSE systems safeguarded at TCS" }
 ];

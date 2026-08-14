@@ -5,49 +5,73 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/Portfolio_Website/assets/favicon.svg" />
+  <!--
+    Apply the theme before first paint. Doing this in a React effect
+    (as this site used to) shows every light-mode visitor a dark frame
+    on load. Stored choice wins; otherwise follow the OS.
+  -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var dark = stored
+          ? stored === 'dark'
+          : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', dark);
+      } catch (e) { /* private mode — fall through to light */ }
+    })();
+  </script>
 
-  <!-- Primary Meta -->
-  <title>Abhijith P | Digital Transformation Strategist</title>
+  <link rel="icon" type="image/svg+xml" href="%BASE_URL%assets/favicon.svg" />
+
+  <title>Abhijith P | Product, Data & Digital Strategy</title>
   <meta name="description"
-    content="Portfolio of Abhijith P — MBA (IIM Udaipur), digital transformation strategist, MLOps engineer, and systems architect. 3+ years driving measurable enterprise impact." />
+    content="Portfolio of Abhijith P — MBA (IIM Udaipur), digital transformation strategist and MLOps engineer. Case studies in customer analytics, survival modelling, GenAI systems and product strategy." />
   <meta name="author" content="Abhijith P" />
-  <meta name="theme-color" content="#2563eb" />
+  <meta name="theme-color" content="#FBF8F3" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#14110E" media="(prefers-color-scheme: dark)" />
 
-  <!-- Open Graph (LinkedIn, Facebook, WhatsApp previews) -->
+  <!-- Open Graph — image URL must stay absolute; LinkedIn and WhatsApp reject relative ones -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://abhijithjithu.github.io/Portfolio_Website/" />
-  <meta property="og:title" content="Abhijith P | Digital Transformation Strategist" />
+  <meta property="og:title" content="Abhijith P | Product, Data & Digital Strategy" />
   <meta property="og:description"
-    content="MBA (IIM Udaipur) + 3.3 years enterprise tech. Explore case studies in MLOps, system architecture, and digital strategy." />
-  <meta property="og:image" content="https://abhijithjithu.github.io/Portfolio_Website/assets/og-preview.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:site_name" content="Abhijith P Portfolio" />
+    content="MBA (IIM Udaipur) with 3.3 years in enterprise tech. Case studies in customer analytics, survival modelling, GenAI systems and product strategy." />
+  <!-- Dimensions omitted deliberately: this is the portrait, not a 1200x630 card.
+       Add a purpose-built card to public/assets and restore them alongside it. -->
+  <meta property="og:image" content="https://abhijithjithu.github.io/Portfolio_Website/assets/profile.jpg" />
+  <meta property="og:site_name" content="Abhijith P" />
   <meta property="og:locale" content="en_US" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://abhijithjithu.github.io/Portfolio_Website/" />
-  <meta name="twitter:title" content="Abhijith P | Digital Transformation Strategist" />
+  <meta name="twitter:title" content="Abhijith P | Product, Data & Digital Strategy" />
   <meta name="twitter:description"
-    content="MBA (IIM Udaipur) + 3.3 years enterprise tech. Explore case studies in MLOps, system architecture, and digital strategy." />
-  <meta name="twitter:image" content="https://abhijithjithu.github.io/Portfolio_Website/assets/og-preview.jpg" />
+    content="MBA (IIM Udaipur) with 3.3 years in enterprise tech. Case studies in customer analytics, survival modelling, GenAI systems and product strategy." />
+  <meta name="twitter:image" content="https://abhijithjithu.github.io/Portfolio_Website/assets/profile.jpg" />
 
-  <!-- Canonical -->
   <link rel="canonical" href="https://abhijithjithu.github.io/Portfolio_Website/" />
 
-  <!-- Google Fonts: Inter -->
+  <!--
+    Three variable families replace seven static Inter weights.
+    Loaded non-blocking: the print media type keeps it off the critical
+    path, then onload promotes it to all.
+  -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet" />
+  <link
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  </noscript>
 
-  <!-- Preload critical assets -->
-  <link rel="preload" as="image" href="/Portfolio_Website/assets/profile.jpg" />
+  <link rel="preload" as="image" href="%BASE_URL%assets/profile.jpg" />
 
-  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -66,7 +90,7 @@
       "@type": "EducationalOrganization",
       "name": "Indian Institute of Management Udaipur"
     },
-    "knowsAbout": ["MLOps", "Cloud Architecture", "Digital Strategy", "Python", "AWS", "Machine Learning", "GenAI"]
+    "knowsAbout": ["MLOps", "Cloud Architecture", "Digital Strategy", "Python", "Machine Learning", "GenAI"]
   }
   </script>
 </head>

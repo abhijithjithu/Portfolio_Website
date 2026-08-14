@@ -11,7 +11,7 @@ import ProjectDetail from './pages/ProjectDetail';
 import SiteHeader from './components/SiteHeader';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
-import { ToastProvider } from './components/Toast';
+import ToastProvider from './components/Toast';
 import { EASE } from './lib/motion';
 
 const ScrollToTop = () => {

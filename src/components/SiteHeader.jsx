@@ -12,11 +12,15 @@ const scrollToId = (id) => {
 
 const SiteHeader = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [active, setActive] = useState('');
+  const [observed, setObserved] = useState('');
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isHome = pathname === '/';
+
+  // Derived rather than reset through an effect: off the home page there are
+  // no tracked sections, so nothing should read as active.
+  const active = isHome ? observed : '';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -28,10 +32,7 @@ const SiteHeader = () => {
   // Track the section currently occupying most of the viewport. Reads the same
   // NAV list the links render from, so a section can never be linkable but untracked.
   useEffect(() => {
-    if (!isHome) {
-      setActive('');
-      return undefined;
-    }
+    if (!isHome) return undefined;
 
     const ratios = new Map();
     const observers = NAV.map(({ id }) => {
@@ -49,7 +50,7 @@ const SiteHeader = () => {
               best = key;
             }
           });
-          if (bestRatio > 0) setActive(best);
+          if (bestRatio > 0) setObserved(best);
         },
         { threshold: [0, 0.15, 0.35, 0.6] }
       );

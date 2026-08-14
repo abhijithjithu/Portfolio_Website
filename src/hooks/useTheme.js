@@ -30,7 +30,7 @@ export default function useTheme() {
       document.documentElement.classList.toggle('dark', next);
       try {
         localStorage.setItem('theme', next ? 'dark' : 'light');
-      } catch (e) { /* private mode */ }
+      } catch { /* private mode */ }
       return next;
     });
   }, []);

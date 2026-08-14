@@ -1,13 +1,10 @@
-import { createContext, useCallback, useContext, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Check, X } from 'lucide-react';
 import { EASE } from '../lib/motion';
+import { ToastContext } from '../hooks/useToast';
 
-const ToastContext = createContext(null);
-
-export const useToast = () => useContext(ToastContext);
-
-export const ToastProvider = ({ children }) => {
+const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
   const showToast = useCallback((message, duration = 2800) => {
@@ -56,3 +53,5 @@ export const ToastProvider = ({ children }) => {
     </ToastContext.Provider>
   );
 };
+
+export default ToastProvider;

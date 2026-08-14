@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { slugify } from './blocks';
+import { slugify, stripEmoji } from './slug';
 
 /**
  * Built from the case study's own section titles. Replaces the sticky
@@ -11,7 +11,7 @@ const TableOfContents = ({ content }) => {
     .filter((block) => block.type === 'section_title')
     .map((block) => ({
       id: slugify(block.text),
-      label: String(block.text).replace(/^[\p{Emoji}\s]+/u, ''),
+      label: stripEmoji(block.text),
     }));
 
   const [active, setActive] = useState('');

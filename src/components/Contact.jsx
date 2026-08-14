@@ -12,7 +12,7 @@ import Section from './ui/Section';
 import SectionHeader from './ui/SectionHeader';
 import Reveal from './ui/Reveal';
 import Button from './ui/Button';
-import { useToast } from './Toast';
+import { useToast } from '../hooks/useToast';
 
 const FIELD =
   'u-focus w-full rounded-md border border-line bg-sunken px-3.5 py-2.5 font-sans text-body text-ink ' +

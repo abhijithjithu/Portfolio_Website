@@ -1,16 +1,6 @@
 import Figure from '../ui/Figure';
 import Tag from '../ui/Tag';
-
-/** Stable, readable ids for table-of-contents anchors. */
-export const slugify = (text) =>
-  String(text)
-    .replace(/^[\p{Emoji}\s]+/u, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
-
-/** Section titles in the source data carry leading emoji from an earlier revision. */
-const stripEmoji = (text) => String(text).replace(/^[\p{Emoji}\s]+/u, '');
+import { slugify, stripEmoji } from './slug';
 
 /**
  * Minimal `**bold**` support.
@@ -19,7 +9,7 @@ const stripEmoji = (text) => String(text).replace(/^[\p{Emoji}\s]+/u, '');
  * `**` and bolded every odd index, so a single stray `**` silently bolded
  * everything from there to the end of the paragraph.
  */
-export const RichText = ({ text }) => {
+const RichText = ({ text }) => {
   const parts = String(text).split('**');
   if (parts.length % 2 === 0) return <>{text}</>;
 
@@ -110,7 +100,7 @@ const Callout = ({ text }) => {
  * Renders one content block. `figureIndex` is threaded from the caller so
  * captions can be numbered across the whole case study.
  */
-export const renderBlock = (block, key, figureIndex) => {
+const renderBlock = (block, key, figureIndex) => {
   switch (block.type) {
     // Text blocks are held to the reading measure while figures and tables
     // break out wider. That asymmetry is what makes long-form read as typeset
@@ -197,25 +187,29 @@ export const renderBlock = (block, key, figureIndex) => {
 
     default:
       if (import.meta.env.DEV) {
-        // eslint-disable-next-line no-console
         console.warn(`[case study] unhandled block type: ${block.type}`);
       }
       return null;
   }
 };
 
-/** Renders a whole content array, numbering figures as it goes. */
-const CaseStudyBody = ({ content }) => {
-  let figures = 0;
+const isImage = (block) => block.type === 'image';
 
-  return (
-    <>
-      {content.map((block, i) => {
-        if (block.type === 'image') figures += 1;
-        return renderBlock(block, i, block.type === 'image' ? figures : undefined);
-      })}
-    </>
-  );
-};
+/**
+ * Figure numbers are derived per block rather than accumulated in a counter,
+ * so nothing is mutated while React renders. The repeated count is O(n²) on a
+ * list of at most ninety blocks, which is not worth optimising away.
+ */
+const CaseStudyBody = ({ content }) => (
+  <>
+    {content.map((block, i) =>
+      renderBlock(
+        block,
+        i,
+        isImage(block) ? content.slice(0, i + 1).filter(isImage).length : undefined
+      )
+    )}
+  </>
+);
 
 export default CaseStudyBody;

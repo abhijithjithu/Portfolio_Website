@@ -21,7 +21,7 @@ const Positioning = () => {
       <SectionHeader
         eyebrow="Positioning"
         title="Three ways to read the same background"
-        lede="The same three years and the same MBA, framed for the role you are actually hiring for."
+        lede="The same background, framed for the role you are actually hiring for."
       />
 
       <div

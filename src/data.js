@@ -10,7 +10,7 @@ export const pitchData = [
         id: "strategy",
         label: "Digital Strategy & Enterprise Management",
         title: "Bridging Business and Code",
-        description: "With an MBA from IIM Udaipur and 3.3+ years at Prodapt and TCS, I have driven 20+ automation initiatives using Agile/Scrum, reducing turnaround time by 60-95%. I align digital strategy with organizational goals, architecting solutions that deliver measurable business impact — from launching RAG GenAI modules that improved SLA compliance by 50% to safeguarding NSE trading systems handling $65B in daily volume.",
+        description: "With an MBA from IIM Udaipur and 3.5+ years across TCS, Prodapt and Tata Consulting Engineers, I have driven 20+ automation initiatives using Agile/Scrum, reducing turnaround time by 60-95%. I align digital strategy with organizational goals, architecting solutions that deliver measurable business impact — from launching RAG GenAI modules that improved SLA compliance by 50% to safeguarding NSE trading systems handling $65B in daily volume.",
         highlights: ["IIM Udaipur MBA", "20+ Automation Initiatives", "60-95% Efficiency Gains", "$65B Trading Systems"],
         icon: Building2
     },
@@ -18,8 +18,8 @@ export const pitchData = [
         id: "ai-data",
         label: "AI, Data Science & Product",
         title: "From Data to Decisions",
-        description: "I build intelligent systems that turn complex data into actionable strategy. From engineering Customer Lifetime Value models and Survival Analysis pipelines to architecting a secure MCP-based Enterprise Co-pilot for Deloitte that achieved a 28:1 ROI — I combine deep technical skill in Python, GenAI, and MLOps with a product manager's eye for user-centric design and market impact.",
-        highlights: ["Python & GenAI", "28:1 ROI Co-pilot", "MLOps Pipelines", "Product Strategy"],
+        description: "I build intelligent systems that turn complex data into actionable strategy. Today that means the ontology and industrial knowledge graph layer behind plant digital twins at Tata Consulting Engineers, built on Cognite Data Fusion and NVIDIA Omniverse. Before that, Customer Lifetime Value models, Survival Analysis pipelines, and a secure MCP-based Enterprise Co-pilot for Deloitte that achieved a 28:1 ROI — combining deep technical skill in Python, GenAI, and MLOps with a product manager's eye for user-centric design and market impact.",
+        highlights: ["Knowledge Graphs & Digital Twins", "Python & GenAI", "28:1 ROI Co-pilot", "MLOps Pipelines", "Product Strategy"],
         icon: ServerCog
     },
     {
@@ -737,7 +737,7 @@ export const educationData = [
  * `note` carries the qualifier a bare number needs to not read as a boast.
  */
 export const factsData = [
-    { id: "experience", value: "3.3+", label: "Years experience", note: "TCS · Prodapt · Tata Consulting Engineers" },
+    { id: "experience", value: "3.5+", label: "Years experience", note: "TCS · Prodapt · Tata Consulting Engineers" },
     { id: "initiatives", value: "20+", label: "Automation initiatives", note: "Agile / Scrum delivery" },
     { id: "efficiency", value: "60-95%", label: "Turnaround reduction", note: "Across shipped automations" },
     { id: "volume", value: "$65B", label: "Daily trading volume", note: "NSE systems safeguarded at TCS" }

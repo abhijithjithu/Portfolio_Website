@@ -54,7 +54,7 @@ const Background = () => (
     <SectionHeader
       eyebrow="Background"
       title="Where I have worked and studied"
-      lede="Three years in enterprise technology, then an MBA to formalise the strategy side of it."
+      lede="Three years in enterprise technology, an MBA to formalise the strategy side of it, and now industrial digital twins."
     />
 
     <ul>

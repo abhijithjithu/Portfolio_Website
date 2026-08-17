@@ -18,7 +18,7 @@ const Home = () => (
   <>
     <SEO
       title="Abhijith P | Product, Data & Digital Strategy"
-      description="Portfolio of Abhijith P — MBA (IIM Udaipur), digital transformation strategist and MLOps engineer. Case studies in customer analytics, survival modelling, GenAI systems and product strategy."
+      description="Portfolio of Abhijith P — Assistant Manager at Tata Consulting Engineers, MBA (IIM Udaipur). Building ontology and knowledge graph layers for industrial digital twins, plus case studies in customer analytics, survival modelling and GenAI systems."
     />
 
     <Hero />

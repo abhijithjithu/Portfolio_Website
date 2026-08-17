@@ -1,11 +1,4 @@
-import {
-    Building2,
-    ServerCog,
-    Lightbulb,
-    ShieldCheck,
-    GraduationCap,
-    Cloud
-} from 'lucide-react';
+import { Building2, ServerCog, Lightbulb } from 'lucide-react';
 
 /**
  * An array rather than an object keyed by prose. The labels used to double
@@ -598,15 +591,20 @@ export const projectData = [
     }
 ];
 
+/**
+ * Reverse-chronological. The MBA lives in educationData rather than here —
+ * it was previously in both, so it rendered twice in the same section.
+ * No `icon` field: the background list is typographic and never rendered one.
+ */
 export const experienceData = [
     {
-        id: "iim",
-        role: "MBA in Digital Enterprise Management",
-        company: "IIM Udaipur",
-        duration: "Mar 2025 - Mar 2026",
-        description: "Maintained a 3.44 GPA, ranking in the top 5% of the cohort. Member of the Technalytics Club. During the MBA, engineered a secure MCP-based Enterprise Co-pilot — a project in collaboration with Deloitte — to automate M365 workflows without exposing sensitive data to LLMs.",
-        technologies: ["Digital Enterprise Management", "MCP", "AI Security", "M365 Workflows"],
-        icon: GraduationCap
+        id: "tce",
+        role: "Assistant Manager",
+        company: "Tata Consulting Engineers",
+        duration: "Jul 2026 - Present",
+        current: true,
+        description: "Building the ontology and industrial knowledge graph layer behind plant digital twins. Cognite Data Fusion holds the data model and serves as the backend, NVIDIA Omniverse carries the 3D digital twin, and an in-house product ties the two together into a single interface for engineering teams.",
+        technologies: ["Cognite Data Fusion", "Knowledge Graphs", "Ontology Modelling", "Digital Twin", "NVIDIA Omniverse"]
     },
     {
         id: "prodapt",
@@ -614,8 +612,7 @@ export const experienceData = [
         company: "Prodapt",
         duration: "Dec 2022 - Mar 2025",
         description: "Managed the end-to-end product lifecycle for 20+ automation initiatives using Agile/Scrum, reducing turnaround time by 60-95%. Architected scalable AWS-native solutions (Lambda, API Gateway, EC2, S3) supporting 3x user growth. Launched a RAG GenAI module improving SLA compliance by 50%, and engineered reusable Python/SQL libraries cutting dev cycle time significantly.",
-        technologies: ["AWS", "RAG GenAI", "Python", "SQL", "Agile/Scrum"],
-        icon: Cloud
+        technologies: ["AWS", "RAG GenAI", "Python", "SQL", "Agile/Scrum"]
     },
     {
         id: "tcs",
@@ -623,8 +620,7 @@ export const experienceData = [
         company: "Tata Consultancy Services (TCS)",
         duration: "Nov 2021 - Dec 2022",
         description: "Safeguarded NSE trading systems handling $65B in daily volume through 30+ BCP drills and root cause analyses on critical incidents. Led a 5-member team resolving 100+ technical incidents with zero downtime. Maintained 100% uptime across 50+ RHEL servers and automated manual data workflows via Bash scripting for an 80% efficiency gain.",
-        technologies: ["RHEL Administration", "Bash Scripting", "Risk Management", "High Availability"],
-        icon: ShieldCheck
+        technologies: ["RHEL Administration", "Bash Scripting", "Risk Management", "High Availability"]
     }
 ];
 
@@ -741,7 +737,7 @@ export const educationData = [
  * `note` carries the qualifier a bare number needs to not read as a boast.
  */
 export const factsData = [
-    { id: "experience", value: "3.3+", label: "Years experience", note: "Prodapt · TCS" },
+    { id: "experience", value: "3.3+", label: "Years experience", note: "TCS · Prodapt · Tata Consulting Engineers" },
     { id: "initiatives", value: "20+", label: "Automation initiatives", note: "Agile / Scrum delivery" },
     { id: "efficiency", value: "60-95%", label: "Turnaround reduction", note: "Across shipped automations" },
     { id: "volume", value: "$65B", label: "Daily trading volume", note: "NSE systems safeguarded at TCS" }

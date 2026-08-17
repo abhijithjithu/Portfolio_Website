@@ -13,10 +13,15 @@ import Tag from './ui/Tag';
  * the decorative variety that makes generated layouts recognisable.
  */
 
-const Entry = ({ period, title, subtitle, description, chips, meta, delay }) => (
+const Entry = ({ period, title, subtitle, description, chips, meta, current, delay }) => (
   <Reveal delay={delay} as="li" className="border-t border-line py-9 first:border-t-0 md:py-11">
     <div className="grid gap-3 md:grid-cols-[9.5rem_1fr] md:gap-10">
-      <p className="font-sans text-meta tabular-nums text-ink-faint md:pt-1">{period}</p>
+      <p className="flex items-center gap-2 font-sans text-meta tabular-nums text-ink-faint md:pt-1">
+        {current && (
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+        )}
+        {period}
+      </p>
 
       <div>
         <h3 className="font-display text-h3 text-ink">{title}</h3>
@@ -62,6 +67,7 @@ const Background = () => (
           subtitle={role.company}
           description={role.description}
           chips={role.technologies}
+          current={role.current}
         />
       ))}
     </ul>

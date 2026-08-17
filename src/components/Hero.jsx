@@ -97,16 +97,17 @@ const Hero = () => {
               {...fade(1)}
               className="mt-5 font-sans text-lede text-ink-muted"
             >
-              MBA, IIM Udaipur — building where product, data and digital strategy meet.
+              Assistant Manager at Tata Consulting Engineers. MBA, IIM Udaipur.
             </motion.p>
 
             <motion.p
               {...fade(2)}
               className="mt-6 max-w-[54ch] font-sans text-body text-ink-body"
             >
-              Three years across Prodapt and TCS shipping automation, cloud and GenAI
-              systems, now paired with an MBA in Digital Enterprise Management. I work on
-              the join between what a business needs and what an engineering team can
+              I build the ontology and knowledge graph layer behind industrial digital
+              twins, on Cognite Data Fusion and NVIDIA Omniverse. Before that, three years
+              across Prodapt and TCS shipping automation, cloud and GenAI systems. I work
+              on the join between what a business needs and what an engineering team can
               actually ship.
             </motion.p>
 

@@ -35,7 +35,7 @@ const upsertCanonical = (href) => {
 
 const SEO = ({
   title = `${NAME} | Product, Data & Digital Strategy`,
-  description = 'Portfolio of Abhijith P — MBA (IIM Udaipur), digital transformation strategist and MLOps engineer.',
+  description = 'Portfolio of Abhijith P — Assistant Manager at Tata Consulting Engineers, MBA (IIM Udaipur). Building ontology and knowledge graph layers for industrial digital twins, plus case studies in customer analytics, survival modelling and GenAI systems.',
   url = SITE_URL,
   image = OG_IMAGE,
 }) => {

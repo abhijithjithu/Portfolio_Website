@@ -38,6 +38,11 @@ export const pitchData = [
  * could emit a category the filter bar didn't list, and dropped any project
  * that matched no keyword out of every tab except "All".
  *
+ * `links` surfaces verifiable artefacts — repository, live demo, recorded
+ * walkthrough — as buttons on the case study and the featured entry. Shape:
+ *   links: [{ kind: 'repo' | 'demo' | 'video', label: 'Source', href: '...' }]
+ * Nothing renders when the field is absent.
+ *
  * `year` is intentionally absent: it is not recoverable from the existing
  * content, and the work index omits the column for any project without one.
  * Add `year: "2025"` to a project and it will render.
@@ -489,6 +494,9 @@ export const projectData = [
         kind: "Product",
         categories: ["Product"],
         hasCaseStudy: true,
+        links: [
+            { kind: "demo", label: "Live demo", href: "https://yuvaplay.lovable.app/" }
+        ],
         content: [
             { type: 'section_title', text: 'Overview' },
             { type: 'paragraph', text: 'YuvaPlay is a mobile-first platform designed to discover, train, and showcase hidden sports talent in rural India. The platform bridges the gap between aspiring athletes and structured opportunities by enabling video-based talent discovery, remote coaching, and tournament access.' },
@@ -567,7 +575,6 @@ export const projectData = [
             { type: 'section_title', text: 'Wireframes & Prototype' },
             { type: 'paragraph', text: 'Designed a mobile-first interface focused on simplicity and accessibility. Key screens include Onboarding & language selection, Video upload & progress tracking, Athlete profile dashboard, and Coach review panel.' },
             { type: 'image', src: '/assets/yuvaplay-wireframes.png', alt: 'Wireframes', caption: 'Wireframes' },
-            { type: 'callout', text: 'Live Demo: https://yuvaplay.lovable.app/' },
 
             { type: 'section_title', text: 'Impact & Value' },
             {

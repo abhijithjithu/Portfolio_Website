@@ -16,13 +16,8 @@ export const GITHUB_URL = 'https://github.com/abhijithjithu';
 /** Absolute, and deliberately not derived from BASE_URL — social crawlers reject relative URLs. */
 export const SITE_URL = 'https://abhijithjithu.github.io/Portfolio_Website/';
 
-/**
- * Points at the real portrait because it exists. The previous value referenced
- * an og-preview.jpg that was never created, so every shared link rendered a
- * blank card. A purpose-built 1200×630 image would be better — drop one in
- * public/assets and repoint this.
- */
-export const OG_IMAGE = `${SITE_URL}assets/profile.jpg`;
+/** Purpose-built 1200x630 card in public/assets. */
+export const OG_IMAGE = `${SITE_URL}assets/og-preview.png`;
 
 /**
  * Resolves a public/ path against Vite's base so it survives the
@@ -31,6 +26,17 @@ export const OG_IMAGE = `${SITE_URL}assets/profile.jpg`;
  */
 export const asset = (path) =>
   `${import.meta.env.BASE_URL}${String(path).replace(/^\//, '')}`;
+
+/**
+ * Web3Forms access key. Get one free at https://web3forms.com (no account
+ * needed — it is emailed to you) and paste it here.
+ *
+ * While this is empty the contact form falls back to opening a mail client,
+ * and says so. That fallback silently does nothing on machines with no mail
+ * client configured, which is why a real endpoint is worth the two minutes.
+ */
+export const CONTACT_FORM_KEY = '';
+export const CONTACT_FORM_ENDPOINT = 'https://api.web3forms.com/submit';
 
 export const RESUME = '/assets/resume.pdf';
 export const PROFILE_PHOTO = '/assets/profile.jpg';

@@ -198,3 +198,91 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ──────────────────────────────────────────────────────────────
+   Print
+
+   Recruiters save portfolios to PDF. Without this the page prints
+   the dark palette, the fixed header over the first paragraph, and
+   navigation chrome that means nothing on paper.
+   ────────────────────────────────────────────────────────────── */
+
+@media print {
+  /* Always print on paper-white, whatever theme is on screen. */
+  :root,
+  :root.dark {
+    --ground: 255 255 255;
+    --surface: 255 255 255;
+    --sunken: 250 249 246;
+    --line: 219 213 203;
+    --line-strong: 190 182 168;
+    --ink: 17 17 17;
+    --ink-body: 34 34 34;
+    --ink-muted: 90 90 90;
+    --ink-faint: 120 120 120;
+    --accent: 140 66 46;
+    --shadow-xs: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+    --shadow-xl: none;
+  }
+
+  @page {
+    margin: 18mm 16mm;
+  }
+
+  header,
+  footer,
+  nav[aria-label='On this page'],
+  [aria-label='Back to top'],
+  [aria-label='Skip to content'],
+  .print-hide {
+    display: none !important;
+  }
+
+  main {
+    padding-top: 0 !important;
+  }
+
+  body {
+    background: #fff !important;
+  }
+
+  /* Reveal wrappers may be mid-animation when the print dialog opens. */
+  * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* Printed links are dead ends unless the address is visible. */
+  article a[href^='http']::after,
+  .print-url a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.75em;
+    color: rgb(var(--ink-muted));
+    word-break: break-all;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid-page;
+  }
+
+  figure,
+  table,
+  blockquote,
+  li {
+    break-inside: avoid;
+  }
+
+  img {
+    max-height: 90mm;
+  }
+}

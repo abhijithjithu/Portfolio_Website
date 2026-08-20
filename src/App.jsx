@@ -8,6 +8,7 @@ import {
 import { AnimatePresence, MotionConfig, motion } from 'framer-motion';
 import Home from './pages/Home';
 import ProjectDetail from './pages/ProjectDetail';
+import NotFound from './pages/NotFound';
 import SiteHeader from './components/SiteHeader';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
@@ -37,7 +38,7 @@ const AnimatedRoutes = () => {
         <Route
           path="/"
           element={
-            <motion.main variants={page} initial="initial" animate="animate" exit="exit">
+            <motion.main id="main" variants={page} initial="initial" animate="animate" exit="exit">
               <Home />
             </motion.main>
           }
@@ -45,17 +46,16 @@ const AnimatedRoutes = () => {
         <Route
           path="/project/:id"
           element={
-            <motion.main variants={page} initial="initial" animate="animate" exit="exit">
+            <motion.main id="main" variants={page} initial="initial" animate="animate" exit="exit">
               <ProjectDetail />
             </motion.main>
           }
         />
-        {/* Unknown paths fall back to Home rather than a blank screen. */}
         <Route
           path="*"
           element={
-            <motion.main variants={page} initial="initial" animate="animate" exit="exit">
-              <Home />
+            <motion.main id="main" variants={page} initial="initial" animate="animate" exit="exit">
+              <NotFound />
             </motion.main>
           }
         />
@@ -71,6 +71,12 @@ const App = () => (
     <Router basename={import.meta.env.BASE_URL}>
       <ToastProvider>
         <ScrollToTop />
+        <a
+          href="#main"
+          className="u-focus sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-md focus:border focus:border-line focus:bg-surface focus:px-4 focus:py-2 focus:font-sans focus:text-meta focus:text-ink focus:shadow-lg"
+        >
+          Skip to content
+        </a>
         <SiteHeader />
         <AnimatedRoutes />
         <Footer />

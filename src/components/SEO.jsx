@@ -33,11 +33,30 @@ const upsertCanonical = (href) => {
   el.setAttribute('href', href);
 };
 
+/**
+ * Page-scoped structured data. Kept in its own element so it can be replaced
+ * per route without disturbing the site-wide Person schema in index.html.
+ */
+const upsertJsonLd = (data) => {
+  const id = 'route-jsonld';
+  const existing = document.getElementById(id);
+  if (!data) {
+    existing?.remove();
+    return;
+  }
+  const el = existing ?? document.createElement('script');
+  el.id = id;
+  el.type = 'application/ld+json';
+  el.textContent = JSON.stringify(data);
+  if (!existing) document.head.appendChild(el);
+};
+
 const SEO = ({
   title = `${NAME} | Product, Data & Digital Strategy`,
   description = 'Portfolio of Abhijith P — Assistant Manager at Tata Consulting Engineers, MBA (IIM Udaipur). Building ontology and knowledge graph layers for industrial digital twins, plus case studies in customer analytics, survival modelling and GenAI systems.',
   url = SITE_URL,
   image = OG_IMAGE,
+  jsonLd = null,
 }) => {
   useEffect(() => {
     document.title = title;
@@ -53,7 +72,8 @@ const SEO = ({
     upsertMeta('name', 'twitter:description', description);
     upsertMeta('name', 'twitter:image', image);
     upsertCanonical(url);
-  }, [title, description, url, image]);
+    upsertJsonLd(jsonLd);
+  }, [title, description, url, image, jsonLd]);
 
   return null;
 };

@@ -7,6 +7,8 @@ import Section from './ui/Section';
 import SectionHeader from './ui/SectionHeader';
 import Reveal from './ui/Reveal';
 import Tag from './ui/Tag';
+import ProjectLinks from './ui/ProjectLinks';
+import { readingMinutes } from '../lib/content';
 
 const ALL = 'All';
 
@@ -104,7 +106,9 @@ const FeaturedEntry = ({ project }) => (
 
     <div className={project.cover ? 'lg:col-span-5' : 'lg:col-span-12'}>
       <p className="font-sans text-eyebrow uppercase text-ink-faint">
-        {[project.kind, project.year].filter(Boolean).join(' · ')}
+        {[project.kind, project.year, `${readingMinutes(project.content)} min read`]
+          .filter(Boolean)
+          .join(' · ')}
       </p>
 
       <h3 className="mt-4 font-display text-h2 text-ink">
@@ -132,16 +136,19 @@ const FeaturedEntry = ({ project }) => (
         ))}
       </ul>
 
-      <Link
-        to={`/project/${project.id}`}
-        className="u-focus group mt-7 inline-flex items-center gap-2 font-sans text-meta font-semibold text-accent"
-      >
-        Read the case study
-        <ArrowRight
-          className="h-4 w-4 transition-transform duration-fast ease-smooth group-hover:translate-x-1"
-          aria-hidden="true"
-        />
-      </Link>
+      <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+        <Link
+          to={`/project/${project.id}`}
+          className="u-focus group inline-flex items-center gap-2 font-sans text-meta font-semibold text-accent"
+        >
+          Read the case study
+          <ArrowRight
+            className="h-4 w-4 transition-transform duration-fast ease-smooth group-hover:translate-x-1"
+            aria-hidden="true"
+          />
+        </Link>
+        <ProjectLinks links={project.links} />
+      </div>
     </div>
   </Reveal>
 );
@@ -183,7 +190,13 @@ const ProjectRow = ({ project, index, delay }) => {
 
       <div className="flex items-start gap-3 md:pt-1.5">
         <span className="font-sans text-meta text-ink-faint">
-          {[project.kind, project.year].filter(Boolean).join(' · ')}
+          {[
+            project.kind,
+            project.year,
+            linked ? `${readingMinutes(project.content)} min` : null,
+          ]
+            .filter(Boolean)
+            .join(' · ')}
         </span>
         {linked && (
           <ArrowRight

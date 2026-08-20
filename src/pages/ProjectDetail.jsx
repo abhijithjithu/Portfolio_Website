@@ -2,10 +2,12 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { projectData } from '../data';
-import { SITE_URL } from '../config/site';
+import { NAME, SITE_URL } from '../config/site';
 import SEO from '../components/SEO';
 import CaseStudyBody from '../components/casestudy/blocks';
 import TableOfContents from '../components/casestudy/TableOfContents';
+import ProjectLinks from '../components/ui/ProjectLinks';
+import { readingMinutes } from '../lib/content';
 
 /** The only reading-progress indicator on the site. */
 const ReadingProgress = () => {
@@ -49,6 +51,23 @@ const ProjectDetail = () => {
 
   if (!project) return <Navigate to="/" replace />;
 
+  const minutes = readingMinutes(project.content);
+  const url = `${SITE_URL}project/${project.id}`;
+
+  // Marks each case study as an article rather than letting search engines
+  // treat every route as the same portfolio homepage.
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: project.title,
+    headline: project.title,
+    abstract: project.description,
+    url,
+    author: { '@type': 'Person', name: NAME },
+    keywords: project.tags.join(', '),
+    ...(project.year ? { datePublished: project.year } : {}),
+  };
+
   const position = readable.indexOf(project);
   const prev = readable[position - 1];
   const next = readable[position + 1];
@@ -58,7 +77,8 @@ const ProjectDetail = () => {
       <SEO
         title={`${project.title} | Abhijith P`}
         description={project.description}
-        url={`${SITE_URL}project/${project.id}`}
+        url={url}
+        jsonLd={jsonLd}
       />
       <ReadingProgress />
 
@@ -79,7 +99,9 @@ const ProjectDetail = () => {
 
           <header className="pt-10">
             <p className="font-sans text-eyebrow uppercase text-ink-faint">
-              {['Case study', project.kind, project.year].filter(Boolean).join(' · ')}
+              {['Case study', project.kind, project.year, `${minutes} min read`]
+                .filter(Boolean)
+                .join(' · ')}
             </p>
 
             <h1 className="mt-5 max-w-[20ch] font-display text-h1 text-ink">{project.title}</h1>
@@ -87,6 +109,8 @@ const ProjectDetail = () => {
             <p className="u-measure mt-6 font-sans text-lede text-ink-muted">
               {project.description}
             </p>
+
+            <ProjectLinks links={project.links} className="mt-7" />
           </header>
 
           <hr className="u-rule mt-12" />

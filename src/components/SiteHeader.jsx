@@ -79,7 +79,9 @@ const SiteHeader = () => {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 h-header border-b transition-colors duration-base ease-smooth ${
-        scrolled ? 'border-line bg-ground/85 backdrop-blur-sm' : 'border-transparent bg-transparent'
+        scrolled || menuOpen
+          ? 'border-line bg-ground/95 backdrop-blur-md'
+          : 'border-transparent bg-transparent'
       }`}
     >
       <div className="u-container flex h-header items-center justify-between gap-6">

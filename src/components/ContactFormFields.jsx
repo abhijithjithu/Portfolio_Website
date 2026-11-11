@@ -8,8 +8,8 @@ import {
 import Button from './ui/Button';
 
 const FIELD =
-  'u-focus w-full rounded-md border border-line bg-sunken px-3.5 py-2.5 font-sans text-body text-ink ' +
-  'placeholder:text-ink-faint transition-colors duration-fast ease-smooth hover:border-line-strong ' +
+  'u-focus w-full rounded-md border border-line-strong bg-field px-3.5 py-2.5 font-sans text-body text-ink ' +
+  'placeholder:text-ink-faint transition-colors duration-fast ease-smooth hover:border-ink-faint ' +
   'focus:border-accent';
 
 const LABEL = 'mb-2 block font-sans text-eyebrow uppercase text-ink-faint';
@@ -134,7 +134,7 @@ const ContactFormFields = () => {
         {status === 'sending' ? 'Sending…' : 'Send message'}
       </Button>
 
-      <p role="status" aria-live="polite" className="mt-3 font-sans text-[0.75rem] text-ink-faint">
+      <p role="status" aria-live="polite" className="mt-3 font-sans text-meta font-normal text-ink-muted">
         {status === 'error' ? (
           <span className="text-accent">
             {error} You can email me at {CONTACT_EMAIL}.

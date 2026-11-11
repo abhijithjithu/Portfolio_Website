@@ -9,6 +9,7 @@ export const pitchData = [
     {
         id: "strategy",
         label: "Digital Strategy & Enterprise Management",
+        shortLabel: "Strategy",
         title: "Bridging Business and Code",
         description: "With an MBA from IIM Udaipur and 3.5+ years across TCS, Prodapt and Tata Consulting Engineers, I have driven 20+ automation initiatives using Agile/Scrum, reducing turnaround time by 60-95%. I align digital strategy with organizational goals, architecting solutions that deliver measurable business impact — from launching RAG GenAI modules that improved SLA compliance by 50% to safeguarding NSE trading systems handling $65B in daily volume.",
         highlights: ["IIM Udaipur MBA", "20+ Automation Initiatives", "60-95% Efficiency Gains", "$65B Trading Systems"],
@@ -17,6 +18,7 @@ export const pitchData = [
     {
         id: "ai-data",
         label: "AI, Data Science & Product",
+        shortLabel: "AI & Data",
         title: "From Data to Decisions",
         description: "I build intelligent systems that turn complex data into actionable strategy. Today that means the ontology and industrial knowledge graph layer behind plant digital twins at Tata Consulting Engineers, built on Cognite Data Fusion and NVIDIA Omniverse. Before that, Customer Lifetime Value models, Survival Analysis pipelines, and a secure MCP-based Enterprise Co-pilot for Deloitte that achieved a 28:1 ROI — combining deep technical skill in Python, GenAI, and MLOps with a product manager's eye for user-centric design and market impact.",
         highlights: ["Knowledge Graphs & Digital Twins", "Python & GenAI", "28:1 ROI Co-pilot", "MLOps Pipelines", "Product Strategy"],
@@ -25,6 +27,7 @@ export const pitchData = [
     {
         id: "entrepreneurship",
         label: "Entrepreneurship & Innovation",
+        shortLabel: "Venture",
         title: "Building from Zero to One",
         description: "Driven by a builder's mindset, I co-founded PlaySekai and designed YuvaPlay — a mobile-first platform unlocking rural sports talent. I thrive at the intersection of strategy and execution: from conducting user research and defining product roadmaps to shipping MVPs and scaling communities. I bring the same entrepreneurial energy to every team I join.",
         highlights: ["PlaySekai Co-founder", "YuvaPlay Product Lead", "User Research to MVP", "Community Scaling"],
@@ -706,7 +709,7 @@ export const skillsData = [
 export const testimonialsData = [
     {
         id: 1,
-        content: "Abhijith is a highly skilled and dedicated professional. He combines technical expertise with a sharp strategic mind. He is Sure to become an outstanding business leader.",
+        content: "Abhijith is a highly skilled and dedicated professional. He combines technical expertise with a sharp strategic mind. He is sure to become an outstanding business leader.",
         author: "Asad Nabi",
         title: "Chief Enterprise Architect",
         org: "Liberty Latin America"

@@ -33,13 +33,15 @@ export const asset = (path) =>
 
 /**
  * Web3Forms access key. Get one free at https://web3forms.com (no account
- * needed — it is emailed to you) and paste it here.
+ * needed — it is emailed to you) and set it as VITE_WEB3FORMS_KEY in Vercel
+ * (Project → Settings → Environment Variables), then redeploy. The key is
+ * public by design, so shipping it in the bundle is expected.
  *
  * While this is empty the contact form falls back to opening a mail client,
  * and says so. That fallback silently does nothing on machines with no mail
  * client configured, which is why a real endpoint is worth the two minutes.
  */
-export const CONTACT_FORM_KEY = '';
+export const CONTACT_FORM_KEY = import.meta.env.VITE_WEB3FORMS_KEY ?? '';
 export const CONTACT_FORM_ENDPOINT = 'https://api.web3forms.com/submit';
 
 export const RESUME = '/assets/resume.pdf';

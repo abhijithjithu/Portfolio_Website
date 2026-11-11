@@ -1,11 +1,22 @@
-import { Github, Linkedin, Mail } from 'lucide-react';
-import { CONTACT_EMAIL, GITHUB_URL, LINKEDIN_URL, NAME, NAV } from '../config/site';
+import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import {
+  CONTACT_EMAIL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+  NAME,
+  NAV,
+  RESUME,
+  ROLE,
+  asset,
+} from '../config/site';
 
 /**
- * A quiet closing bar and nothing more. This used to carry a full
+ * A sign-off line and a quiet closing bar. This used to carry a full
  * "Ready to Build the Future?" call-to-action block, which made three
  * separate contact CTAs on one page, plus the same four links rendered
- * twice — once as icons and again as text.
+ * twice — once as icons and again as text. The sign-off is a name and a
+ * résumé link, not a fourth call to action.
  */
 const Footer = () => {
   const socials = [
@@ -18,20 +29,41 @@ const Footer = () => {
     <footer className="bg-ground">
       <div className="u-container">
         <hr className="u-rule" />
-        <div className="flex flex-col items-start justify-between gap-6 py-10 sm:flex-row sm:items-center">
+
+        <div className="flex flex-col items-start justify-between gap-6 pb-10 pt-12 sm:flex-row sm:items-end md:pt-16">
+          <div>
+            <p className="font-display text-h2 text-ink">{NAME}</p>
+            <p className="mt-2 font-sans text-small text-ink-muted">{ROLE}</p>
+          </div>
+          <a
+            href={asset(RESUME)}
+            target="_blank"
+            rel="noreferrer"
+            className="u-focus group inline-flex items-center gap-2 font-sans text-meta font-semibold text-accent"
+          >
+            Download résumé
+            <ArrowUpRight
+              className="h-4 w-4 transition-transform duration-fast ease-smooth group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+
+        <hr className="u-rule" />
+        <div className="flex flex-col items-start justify-between gap-6 py-8 sm:flex-row sm:items-center">
           <p className="font-sans text-meta text-ink-muted">
             © {new Date().getFullYear()} {NAME}
           </p>
 
           <nav className="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer">
             {NAV.map(({ id, label }) => (
-              <a
+              <Link
                 key={id}
-                href={`#${id}`}
-                className="u-focus font-sans text-meta text-ink-muted transition-colors duration-fast ease-smooth hover:text-ink"
+                to={{ pathname: '/', hash: `#${id}` }}
+                className="u-focus py-1 font-sans text-meta text-ink-muted transition-colors duration-fast ease-smooth hover:text-ink"
               >
                 {label}
-              </a>
+              </Link>
             ))}
           </nav>
 

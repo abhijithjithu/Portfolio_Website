@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { projectData } from '../data';
-import { asset } from '../config/site';
+import { picture } from '../lib/images';
 import Section from './ui/Section';
 import SectionHeader from './ui/SectionHeader';
 import Reveal from './ui/Reveal';
@@ -11,6 +11,9 @@ import ProjectLinks from './ui/ProjectLinks';
 import { readingMinutes } from '../lib/content';
 
 const ALL = 'All';
+
+/** Rows shown on a phone before the "Show all" button. */
+const PHONE_ROWS = 3;
 
 /**
  * A ruled list rather than a grid of cards.
@@ -26,6 +29,7 @@ const WorkIndex = () => {
     []
   );
   const [filter, setFilter] = useState(ALL);
+  const [showAll, setShowAll] = useState(false);
 
   const visible = useMemo(
     () =>
@@ -38,6 +42,11 @@ const WorkIndex = () => {
   const featured = filter === ALL ? visible.find((p) => p.featured) : undefined;
   const rows = featured ? visible.filter((p) => p !== featured) : visible;
 
+  // Only the unfiltered list is long enough to be worth folding, and only on
+  // a phone: from md up every row is always rendered visibly.
+  const foldable = filter === ALL && rows.length > PHONE_ROWS;
+  const folded = foldable && !showAll;
+
   return (
     <Section id="work" tone="ground">
       <SectionHeader
@@ -47,14 +56,14 @@ const WorkIndex = () => {
       />
 
       {categories.length > 2 && (
-        <div className="mb-12 flex flex-wrap gap-x-6 gap-y-2 border-b border-line">
+        <div className="mb-8 flex flex-wrap gap-x-6 gap-y-2 border-b border-line md:mb-12">
           {categories.map((cat) => (
             <button
               key={cat}
               type="button"
               onClick={() => setFilter(cat)}
               aria-pressed={filter === cat}
-              className={`u-focus -mb-px border-b-2 pb-3 font-sans text-meta transition-colors duration-fast ease-smooth ${
+              className={`u-focus -mb-px border-b-2 pb-3 pt-2 font-sans text-meta transition-colors duration-fast ease-smooth ${
                 filter === cat
                   ? 'border-accent text-ink'
                   : 'border-transparent text-ink-muted hover:text-ink'
@@ -75,9 +84,23 @@ const WorkIndex = () => {
             project={project}
             index={(featured ? 1 : 0) + i + 1}
             delay={i * 0.03}
+            className={folded && i >= PHONE_ROWS ? 'hidden md:block' : ''}
           />
         ))}
       </ul>
+
+      {foldable && (
+        <div className="border-t border-line pt-6 md:hidden">
+          <button
+            type="button"
+            onClick={() => setShowAll((v) => !v)}
+            aria-expanded={showAll}
+            className="u-focus w-full rounded-md border border-line bg-surface px-5 py-3 font-sans text-small font-semibold text-ink shadow-xs transition-colors duration-fast ease-smooth hover:border-line-strong hover:bg-sunken"
+          >
+            {showAll ? 'Show fewer' : `Show all ${projectData.length} projects`}
+          </button>
+        </div>
+      )}
 
       {visible.length === 0 && (
         <p className="py-12 font-sans text-body text-ink-muted">
@@ -88,19 +111,35 @@ const WorkIndex = () => {
   );
 };
 
-const FeaturedEntry = ({ project }) => (
+/** A project's own cover, or failing that the first figure of its case study. */
+const coverOf = (project) =>
+  project.cover ?? project.content?.find((block) => block.type === 'image')?.src;
+
+const FeaturedEntry = ({ project }) => {
+  const cover = project.cover && picture(project.cover, '(min-width: 1024px) 640px, 100vw');
+
+  return (
   <Reveal className="mb-4 grid gap-8 border-t border-line py-10 lg:grid-cols-12 lg:gap-12">
-    {project.cover && (
+    {cover && (
       <div className="lg:col-span-7">
-        <div className="overflow-hidden rounded-md border border-line bg-sunken p-2 shadow-sm sm:p-3">
+        <Link
+          to={`/project/${project.id}`}
+          tabIndex={-1}
+          aria-hidden="true"
+          className="block overflow-hidden rounded-md border border-line bg-sunken p-2 shadow-sm transition-colors duration-fast ease-smooth hover:border-line-strong sm:p-3"
+        >
           <img
-            src={asset(project.cover)}
+            src={cover.src}
+            srcSet={cover.srcSet}
+            sizes={cover.sizes}
+            width={cover.width}
+            height={cover.height}
             alt=""
             loading="lazy"
             decoding="async"
-            className="block w-full rounded-sm object-cover"
+            className="block h-auto w-full rounded-sm object-cover"
           />
-        </div>
+        </Link>
       </div>
     )}
 
@@ -151,21 +190,24 @@ const FeaturedEntry = ({ project }) => (
       </div>
     </div>
   </Reveal>
-);
+  );
+};
 
-const ProjectRow = ({ project, index, delay }) => {
+const ProjectRow = ({ project, index, delay, className = '' }) => {
   const linked = project.hasCaseStudy;
+  const coverSrc = coverOf(project);
+  const thumb = coverSrc && picture(coverSrc, '176px');
 
   const body = (
-    <div className="grid gap-x-8 gap-y-3 md:grid-cols-[3rem_1fr_auto]">
+    <div className="grid gap-x-8 gap-y-3 md:grid-cols-[3rem_1fr_11rem]">
       <span className="font-mono text-meta tabular-nums text-ink-faint md:pt-1.5">
         {String(index).padStart(2, '0')}
       </span>
 
       <div>
         <h3
-          className={`font-display text-h3 transition-colors duration-fast ease-smooth ${
-            linked ? 'text-ink group-hover:text-accent' : 'text-ink-muted'
+          className={`font-display text-h3 text-ink transition-colors duration-fast ease-smooth ${
+            linked ? 'group-hover:text-accent' : ''
           }`}
         >
           {project.title}
@@ -175,7 +217,13 @@ const ProjectRow = ({ project, index, delay }) => {
           {project.company} · {project.role}
         </p>
 
-        <p className="mt-3 max-w-[62ch] font-sans text-body text-ink-body">
+        {/* The full text is one tap away on the case study, so a phone gets
+            three lines of it; unlinked rows have nowhere else to say it. */}
+        <p
+          className={`mt-3 max-w-[62ch] font-sans text-body text-ink-body ${
+            linked ? 'line-clamp-3 md:line-clamp-none' : ''
+          }`}
+        >
           {project.description}
         </p>
 
@@ -188,7 +236,8 @@ const ProjectRow = ({ project, index, delay }) => {
         </ul>
       </div>
 
-      <div className="flex items-start gap-3 md:pt-1.5">
+      <div className="md:pt-1.5">
+        <div className="flex items-start gap-3 md:justify-end">
         <span className="font-sans text-meta text-ink-faint">
           {[
             project.kind,
@@ -204,22 +253,41 @@ const ProjectRow = ({ project, index, delay }) => {
             aria-hidden="true"
           />
         )}
+        </div>
+
+        {/* Thumbnails only from md up: on a phone they would add a screen of
+            height per project to an already long list. */}
+        {thumb && (
+          <div className="mt-4 hidden overflow-hidden rounded-md border border-line bg-sunken p-1.5 md:block">
+            <img
+              src={thumb.src}
+              srcSet={thumb.srcSet}
+              sizes={thumb.sizes}
+              width={thumb.width}
+              height={thumb.height}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="block aspect-[16/10] w-full rounded-sm object-cover object-left-top"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
 
   return (
-    <Reveal as="li" delay={delay} className="border-t border-line">
+    <Reveal as="li" delay={delay} className={`border-t border-line ${className}`}>
       {linked ? (
         <Link
           to={`/project/${project.id}`}
-          className="u-focus group -mx-4 block rounded-md px-4 py-9 transition-colors duration-fast ease-smooth hover:bg-surface md:py-10"
+          className="u-focus group -mx-4 block rounded-md px-4 py-8 transition-colors duration-fast ease-smooth hover:bg-surface md:py-10"
         >
           {body}
         </Link>
       ) : (
         // No case study written, so this is a listing rather than a link.
-        <div className="-mx-4 px-4 py-9 md:py-10">{body}</div>
+        <div className="-mx-4 px-4 py-8 md:py-10">{body}</div>
       )}
     </Reveal>
   );

@@ -5,10 +5,13 @@ import { EASE } from '../lib/motion';
 import Section from './ui/Section';
 import SectionHeader from './ui/SectionHeader';
 import Tag from './ui/Tag';
+import Expandable from './ui/Expandable';
 
 /**
- * Tabs are an underlined text row rather than sliding pills with a shared
- * layoutId. The panel crossfades on opacity only — no travel, so switching
+ * From sm up, tabs are an underlined text row rather than sliding pills with
+ * a shared layoutId. On a phone the three long labels used to wrap into a
+ * stack of plain lines that did not read as tabs at all, so there they are
+ * short-labelled chips in a single row. The panel crossfades on opacity only — no travel, so switching
  * tabs reads as a change of content, not a change of place.
  */
 const Positioning = () => {
@@ -27,7 +30,7 @@ const Positioning = () => {
       <div
         role="tablist"
         aria-label="Positioning"
-        className="flex flex-wrap gap-x-7 gap-y-2 border-b border-line"
+        className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:gap-x-7 sm:gap-y-2 sm:overflow-visible sm:border-b sm:border-line sm:px-0 sm:pb-0 [&::-webkit-scrollbar]:hidden"
       >
         {pitchData.map((pitch) => {
           const isActive = pitch.id === activeId;
@@ -40,13 +43,14 @@ const Positioning = () => {
               aria-selected={isActive}
               aria-controls={`panel-${pitch.id}`}
               onClick={() => setActiveId(pitch.id)}
-              className={`u-focus -mb-px border-b-2 pb-3 pt-1 text-left font-sans text-meta transition-colors duration-fast ease-smooth ${
+              className={`u-focus shrink-0 whitespace-nowrap rounded-full border px-4 py-2.5 text-left font-sans text-meta transition-colors duration-fast ease-smooth sm:-mb-px sm:whitespace-normal sm:rounded-none sm:border-0 sm:border-b-2 sm:bg-transparent sm:px-0 sm:pb-3 sm:pt-1 ${
                 isActive
-                  ? 'border-accent text-ink'
-                  : 'border-transparent text-ink-muted hover:text-ink'
+                  ? 'border-accent bg-accent-tint text-ink'
+                  : 'border-line bg-surface text-ink-muted hover:text-ink sm:border-transparent'
               }`}
             >
-              {pitch.label}
+              <span className="sm:hidden">{pitch.shortLabel ?? pitch.label}</span>
+              <span className="hidden sm:inline">{pitch.label}</span>
             </button>
           );
         })}
@@ -62,7 +66,7 @@ const Positioning = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2, ease: EASE }}
-          className="mt-10 u-card p-7 md:p-10"
+          className="mt-6 u-card p-6 sm:mt-10 sm:p-7 md:p-10"
         >
           <div className="flex items-start gap-4">
             {Icon && (
@@ -71,9 +75,9 @@ const Positioning = () => {
             <h3 className="font-display text-h3 text-ink">{active.title}</h3>
           </div>
 
-          <p className="mt-5 max-w-[68ch] font-sans text-body text-ink-body">
+          <Expandable lines={5} className="mt-5 max-w-[68ch] font-sans text-body text-ink-body">
             {active.description}
-          </p>
+          </Expandable>
 
           <ul className="mt-7 flex flex-wrap gap-2">
             {active.highlights.map((highlight) => (

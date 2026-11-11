@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { projectData } from '../data';
 import { NAME, SITE_URL } from '../config/site';
 import SEO from '../components/SEO';
+import NotFound from './NotFound';
 import CaseStudyBody from '../components/casestudy/blocks';
 import TableOfContents from '../components/casestudy/TableOfContents';
 import ProjectLinks from '../components/ui/ProjectLinks';
@@ -49,7 +50,8 @@ const ProjectDetail = () => {
   const readable = useMemo(() => projectData.filter((p) => p.hasCaseStudy), []);
   const project = readable.find((p) => p.id === id);
 
-  if (!project) return <Navigate to="/" replace />;
+  // An unknown id is a broken link, so say so rather than quietly going home.
+  if (!project) return <NotFound />;
 
   const minutes = readingMinutes(project.content);
   const url = `${SITE_URL}project/${project.id}`;

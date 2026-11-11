@@ -53,26 +53,6 @@
 
   <link rel="canonical" href="%VITE_SITE_URL%" />
 
-  <!--
-    Three variable families replace seven static Inter weights.
-    Loaded non-blocking: the print media type keeps it off the critical
-    path, then onload promotes it to all.
-  -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    rel="stylesheet"
-    media="print"
-    onload="this.media='all'"
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" />
-  <noscript>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" />
-  </noscript>
-
-  <link rel="preload" as="image" href="%BASE_URL%assets/profile.jpg" />
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",

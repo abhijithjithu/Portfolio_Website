@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -7,19 +7,41 @@ import {
 } from 'react-router-dom';
 import { AnimatePresence, MotionConfig, motion } from 'framer-motion';
 import Home from './pages/Home';
-import ProjectDetail from './pages/ProjectDetail';
 import NotFound from './pages/NotFound';
 import SiteHeader from './components/SiteHeader';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import ToastProvider from './components/Toast';
 import { EASE } from './lib/motion';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
+
+// The case-study reader (blocks, tables, table of contents) is only needed
+// once someone opens a project, so it stays out of the home page bundle.
+const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return undefined;
+    }
+
+    // A link to a home section from another route: the section does not
+    // exist until the outgoing page has faded and Home has mounted.
+    let tries = 0;
+    let timer;
+    const seek = () => {
+      const el = document.getElementById(hash.slice(1));
+      if (el) el.scrollIntoView();
+      else if (tries++ < 20) timer = setTimeout(seek, 60);
+    };
+    seek();
+    return () => clearTimeout(timer);
+  }, [pathname, hash]);
+
   return null;
 };
 
@@ -47,7 +69,9 @@ const AnimatedRoutes = () => {
           path="/project/:id"
           element={
             <motion.main id="main" variants={page} initial="initial" animate="animate" exit="exit">
-              <ProjectDetail />
+              <Suspense fallback={<div className="min-h-screen bg-ground" />}>
+                <ProjectDetail />
+              </Suspense>
             </motion.main>
           }
         />
@@ -82,6 +106,9 @@ const App = () => (
         <Footer />
         <BackToTop />
       </ToastProvider>
+      {/* Both are no-ops until enabled for the project in the Vercel dashboard. */}
+      <Analytics />
+      <SpeedInsights />
     </Router>
   </MotionConfig>
 );

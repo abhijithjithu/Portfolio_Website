@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Maximize2 } from 'lucide-react';
-import { asset } from '../../config/site';
-import Lightbox from './Lightbox';
+import { picture } from '../../lib/images';
+
+// Only fetched the first time a figure is opened.
+const Lightbox = lazy(() => import('./Lightbox'));
 
 /**
  * A matted image — the frame is a recessed board with a hairline, so the
@@ -16,23 +18,32 @@ import Lightbox from './Lightbox';
  */
 const Figure = ({ src, alt, caption, index, className = '' }) => {
   const [open, setOpen] = useState(false);
-  const resolved = asset(src);
+  const [everOpened, setEverOpened] = useState(false);
+  // The reading column tops out around 800px; phones get the full width.
+  const img = picture(src, '(min-width: 1024px) 800px, 100vw');
   const label = caption ? `${alt || 'Figure'} — ${caption}` : alt;
 
   return (
     <figure className={`my-10 ${className}`}>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setEverOpened(true);
+          setOpen(true);
+        }}
         aria-label={`Enlarge figure${index ? ` ${index}` : ''}`}
         className="u-focus group relative block w-full cursor-zoom-in rounded-md border border-line bg-sunken p-2 shadow-sm transition-colors duration-fast ease-smooth hover:border-line-strong sm:p-4"
       >
         <img
-          src={resolved}
+          src={img.src}
+          srcSet={img.srcSet}
+          sizes={img.sizes}
+          width={img.width}
+          height={img.height}
           alt={alt || ''}
           loading="lazy"
           decoding="async"
-          className="mx-auto block max-h-[600px] w-full rounded-sm object-contain"
+          className="mx-auto block h-auto max-h-[600px] w-full rounded-sm object-contain"
         />
         <span
           aria-hidden="true"
@@ -49,13 +60,17 @@ const Figure = ({ src, alt, caption, index, className = '' }) => {
         </figcaption>
       )}
 
-      <Lightbox
-        open={open}
-        src={resolved}
-        alt={label}
-        caption={caption}
-        onClose={() => setOpen(false)}
-      />
+      {everOpened && (
+        <Suspense fallback={null}>
+          <Lightbox
+            open={open}
+            src={img.full}
+            alt={label}
+            caption={caption}
+            onClose={() => setOpen(false)}
+          />
+        </Suspense>
+      )}
     </figure>
   );
 };

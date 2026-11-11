@@ -24,6 +24,9 @@
   --ground: 251 248 243;
   --surface: 255 252 247;
   --sunken: 244 238 228;
+  /* Form inputs. Same as sunken on paper; lifted above the surface in the
+     dark palette, where a recessed field vanishes into the page. */
+  --field: 244 238 228;
   --line: 231 223 210;
   --line-strong: 216 205 187;
 
@@ -69,6 +72,7 @@
   --ground: 20 17 14;
   --surface: 28 24 21;
   --sunken: 16 13 11;
+  --field: 38 33 29;
   --line: 46 40 35;
   --line-strong: 61 53 46;
 
@@ -214,6 +218,7 @@
     --ground: 255 255 255;
     --surface: 255 255 255;
     --sunken: 250 249 246;
+    --field: 250 249 246;
     --line: 219 213 203;
     --line-strong: 190 182 168;
     --ink: 17 17 17;

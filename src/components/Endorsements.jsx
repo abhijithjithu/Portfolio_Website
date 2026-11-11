@@ -21,7 +21,20 @@ const Endorsements = () => (
           <figcaption className="mt-6">
             <span className="block h-px w-8 bg-accent" aria-hidden="true" />
             <span className="mt-4 block font-sans text-meta font-semibold text-ink">
-              {item.author}
+              {/* Add `link: "https://linkedin.com/in/..."` to an entry in data.js
+                  and the name becomes a verifiable link. */}
+              {item.link ? (
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="u-focus underline decoration-accent/40 underline-offset-4 transition-colors duration-fast ease-smooth hover:text-accent"
+                >
+                  {item.author}
+                </a>
+              ) : (
+                item.author
+              )}
             </span>
             <span className="mt-0.5 block font-sans text-meta text-ink-muted">
               {item.title} · {item.org}

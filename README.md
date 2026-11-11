@@ -1,16 +1,39 @@
-# React + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio of Abhijith P. React 19 + Vite + Tailwind, deployed on Vercel.
 
-Currently, two official plugins are available:
+## Develop
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Local dev server |
+| `npm run build` | Production build, then `scripts/postbuild.mjs` (per-project pages, `404.html`, `sitemap.xml`, `robots.txt`) |
+| `npm run preview` | Serve the production build locally |
+| `npm run lint` | ESLint |
+| `npm run images` | Regenerate responsive WebP files from `assets-src/` |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Content
 
-## Expanding the ESLint configuration
+- All copy, projects and case studies live in `src/data.js`.
+- Identity, links and navigation live in `src/config/site.js`.
+- Images: drop the full-size original in `assets-src/`, reference it in
+  `data.js` as `/assets/<file>`, and run `npm run images`. Commit the
+  generated files in `public/assets/` and `src/lib/images.json`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Deploy (Vercel)
+
+Pushes to `main` deploy automatically. Optional environment variables
+(Project → Settings → Environment Variables):
+
+| Variable | Purpose |
+| --- | --- |
+| `SITE_URL` | Public origin, e.g. `https://example.com`. Only needed with a custom domain; otherwise the Vercel production domain is used. |
+| `VITE_WEB3FORMS_KEY` | Access key from web3forms.com. Makes the contact form deliver to your inbox instead of opening a mail client. |
+
+Web Analytics and Speed Insights are wired in and start reporting once
+enabled for the project in the Vercel dashboard.

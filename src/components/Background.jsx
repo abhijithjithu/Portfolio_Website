@@ -3,6 +3,7 @@ import Section from './ui/Section';
 import SectionHeader from './ui/SectionHeader';
 import Reveal from './ui/Reveal';
 import Tag from './ui/Tag';
+import Expandable from './ui/Expandable';
 
 /**
  * Experience and education in one ruled list on a shared date rail.
@@ -14,7 +15,7 @@ import Tag from './ui/Tag';
  */
 
 const Entry = ({ period, title, subtitle, description, chips, meta, current, delay }) => (
-  <Reveal delay={delay} as="li" className="border-t border-line py-9 first:border-t-0 md:py-11">
+  <Reveal delay={delay} as="li" className="border-t border-line py-8 first:border-t-0 md:py-11">
     <div className="grid gap-3 md:grid-cols-[9.5rem_1fr] md:gap-10">
       <p className="flex items-center gap-2 font-sans text-meta tabular-nums text-ink-faint md:pt-1">
         {current && (
@@ -32,7 +33,9 @@ const Entry = ({ period, title, subtitle, description, chips, meta, current, del
         </p>
 
         {description && (
-          <p className="mt-4 max-w-[68ch] font-sans text-body text-ink-body">{description}</p>
+          <Expandable className="mt-4 max-w-[68ch] font-sans text-body text-ink-body">
+            {description}
+          </Expandable>
         )}
 
         {chips?.length > 0 && (

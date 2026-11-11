@@ -10,6 +10,7 @@ import {
   asset,
 } from '../config/site';
 import { EASE, ruleDraw, wordWipe } from '../lib/motion';
+import { picture } from '../lib/images';
 import Button from './ui/Button';
 
 const WORDS = NAME.split(' ');
@@ -51,21 +52,34 @@ const Masthead = ({ reduced }) => {
   );
 };
 
-const Portrait = () => (
-  <div className="relative mx-auto w-full max-w-[19rem] lg:max-w-none">
+/**
+ * One image, two framings. On a phone it is a small head-and-shoulders plate
+ * beside the name, so the first screen shows a face rather than a wall of
+ * text; from lg up it is the full portrait in its own column.
+ */
+const portrait = picture(PROFILE_PHOTO, '(min-width: 1024px) 420px, 200px');
+
+const Portrait = ({ className = '' }) => (
+  <div className={`relative ${className}`}>
     {/* Registration mark — the only decorative accent above the fold. */}
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 translate-x-[10px] translate-y-[10px] rounded-md border border-accent/35"
+      className="pointer-events-none absolute inset-0 translate-x-[5px] translate-y-[5px] rounded-md border border-accent/35 lg:translate-x-[10px] lg:translate-y-[10px]"
     />
-    <div className="relative overflow-hidden rounded-md border border-line bg-sunken p-2 shadow-lg">
-      <img
-        src={asset(PROFILE_PHOTO)}
-        alt={`${NAME}, portrait`}
-        width="640"
-        height="800"
-        className="block w-full rounded-sm object-cover transition-transform duration-slow ease-smooth hover:scale-[1.015]"
-      />
+    <div className="relative overflow-hidden rounded-md border border-line bg-sunken p-1 shadow-md lg:p-2 lg:shadow-lg">
+      <div className="aspect-[4/5] overflow-hidden rounded-sm lg:aspect-[2/3]">
+        <img
+          src={portrait.src}
+          srcSet={portrait.srcSet}
+          sizes={portrait.sizes}
+          width={portrait.width}
+          height={portrait.height}
+          alt={`${NAME}, portrait`}
+          fetchPriority="high"
+          decoding="async"
+          className="block h-full w-full origin-[50%_24%] scale-[2.1] object-cover object-top transition-transform duration-slow ease-smooth lg:scale-100 lg:hover:scale-[1.015]"
+        />
+      </div>
     </div>
   </div>
 );
@@ -79,39 +93,48 @@ const Hero = () => {
       : { variants: settle, custom: i, initial: 'hidden', animate: 'show' };
 
   return (
-    <section id="intro" className="bg-ground pb-16 pt-header md:pb-24">
+    <section id="intro" className="bg-ground pb-14 pt-header md:pb-24">
       <div className="u-container">
-        <div className="grid items-center gap-12 pt-16 md:pt-24 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-7">
+        <div className="grid grid-cols-[6rem_1fr] items-center gap-x-5 pt-10 md:pt-24 lg:grid-cols-12 lg:gap-x-16">
+          <div className="col-start-2 row-start-1 lg:col-span-7 lg:col-start-1 lg:self-end">
             <motion.p
               {...fade(0)}
-              className="mb-6 flex items-center gap-2.5 font-sans text-eyebrow uppercase text-ink-faint"
+              className="mb-3 flex items-center gap-2.5 font-sans text-eyebrow uppercase text-ink-faint lg:mb-6"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
               Open to opportunities
             </motion.p>
 
             <Masthead reduced={reduced} />
+          </div>
 
+          <Portrait className="col-start-1 row-start-1 lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:self-center" />
+
+          <div className="col-span-2 lg:col-span-7 lg:col-start-1 lg:row-start-2 lg:self-start">
             <motion.p
               {...fade(1)}
-              className="mt-5 font-sans text-lede text-ink-muted"
+              className="mt-6 font-sans text-lede text-ink-muted lg:mt-5"
             >
               Assistant Manager at Tata Consulting Engineers. MBA, IIM Udaipur.
             </motion.p>
 
             <motion.p
               {...fade(2)}
-              className="mt-6 max-w-[54ch] font-sans text-body text-ink-body"
+              className="mt-5 max-w-[54ch] font-sans text-body text-ink-body lg:mt-6"
             >
               I build the ontology and knowledge graph layer behind industrial digital
-              twins, on Cognite Data Fusion and NVIDIA Omniverse. Before that, three years
-              across Prodapt and TCS shipping automation, cloud and GenAI systems. I work
-              on the join between what a business needs and what an engineering team can
-              actually ship.
+              twins, on Cognite Data Fusion and NVIDIA Omniverse.{' '}
+              {/* The career recap is in the Background section; a phone's first
+                  screen is better spent on the line below it. */}
+              <span className="hidden sm:inline">
+                Before that, three years across Prodapt and TCS shipping automation, cloud
+                and GenAI systems.{' '}
+              </span>
+              I work on the join between what a business needs and what an engineering
+              team can actually ship.
             </motion.p>
 
-            <motion.div {...fade(3)} className="mt-9 flex flex-wrap items-center gap-3">
+            <motion.div {...fade(3)} className="mt-8 flex flex-wrap items-center gap-3 lg:mt-9">
               <Button as="a" href="#work" size="lg">
                 Selected work
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
@@ -121,13 +144,13 @@ const Hero = () => {
               </Button>
             </motion.div>
 
-            <motion.div {...fade(4)} className="mt-8 flex items-center gap-4">
+            <motion.div {...fade(4)} className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 lg:mt-8">
               <a
                 href={LINKEDIN_URL}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"
-                className="u-focus text-ink-muted transition-colors duration-fast ease-smooth hover:text-ink"
+                className="u-focus -m-2 p-2 text-ink-muted transition-colors duration-fast ease-smooth hover:text-ink"
               >
                 <Linkedin className="h-[1.15rem] w-[1.15rem]" />
               </a>
@@ -136,7 +159,7 @@ const Hero = () => {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
-                className="u-focus text-ink-muted transition-colors duration-fast ease-smooth hover:text-ink"
+                className="u-focus -m-2 p-2 text-ink-muted transition-colors duration-fast ease-smooth hover:text-ink"
               >
                 <Github className="h-[1.15rem] w-[1.15rem]" />
               </a>
@@ -149,14 +172,10 @@ const Hero = () => {
               </a>
             </motion.div>
           </div>
-
-          <div className="lg:col-span-5">
-            <Portrait />
-          </div>
         </div>
 
         {/* The rule draws itself across the page, ending in the accent square. */}
-        <div className="mt-16 flex items-center gap-0 md:mt-24">
+        <div className="mt-14 flex items-center gap-0 md:mt-24">
           <motion.span
             aria-hidden="true"
             className="h-px flex-1 origin-left bg-line-strong"

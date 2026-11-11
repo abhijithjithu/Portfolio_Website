@@ -15,6 +15,7 @@ export default {
         ground: rgb('--ground'),
         surface: rgb('--surface'),
         sunken: rgb('--sunken'),
+        field: rgb('--field'),
         line: {
           DEFAULT: rgb('--line'),
           strong: rgb('--line-strong'),
@@ -34,8 +35,8 @@ export default {
       },
 
       fontFamily: {
-        display: ['Fraunces', 'Iowan Old Style', 'Georgia', 'serif'],
-        sans: ['"DM Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['"Fraunces Variable"', 'Fraunces', 'Iowan Old Style', 'Georgia', 'serif'],
+        sans: ['"DM Sans Variable"', '"DM Sans"', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
 
@@ -50,7 +51,7 @@ export default {
         body: ['1.0625rem', { lineHeight: '1.75' }],
         small: ['0.875rem', { lineHeight: '1.6' }],
         meta: ['0.8125rem', { lineHeight: '1.5', letterSpacing: '0.01em', fontWeight: '500' }],
-        eyebrow: ['0.6875rem', { lineHeight: '1', letterSpacing: '0.16em', fontWeight: '600' }],
+        eyebrow: ['0.75rem', { lineHeight: '1', letterSpacing: '0.14em', fontWeight: '600' }],
       },
 
       borderRadius: {

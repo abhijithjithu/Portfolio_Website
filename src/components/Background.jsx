@@ -4,6 +4,7 @@ import SectionHeader from './ui/SectionHeader';
 import Reveal from './ui/Reveal';
 import Tag from './ui/Tag';
 import Expandable from './ui/Expandable';
+import CareerTimeline from './CareerTimeline';
 
 /**
  * Experience and education in one ruled list on a shared date rail.
@@ -59,6 +60,8 @@ const Background = () => (
       title="Where I have worked and studied"
       lede="Three years in enterprise technology, an MBA to formalise the strategy side of it, and now industrial digital twins."
     />
+
+    <CareerTimeline />
 
     <ul>
       {experienceData.map((role, i) => (

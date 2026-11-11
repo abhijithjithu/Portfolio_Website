@@ -10,6 +10,7 @@ import {
   ROLE,
   asset,
 } from '../config/site';
+import { trackResumeDownload } from '../lib/track';
 
 /**
  * A sign-off line and a quiet closing bar. This used to carry a full
@@ -39,6 +40,7 @@ const Footer = () => {
             href={asset(RESUME)}
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackResumeDownload('footer')}
             className="u-focus group inline-flex items-center gap-2 font-sans text-meta font-semibold text-accent"
           >
             Download résumé

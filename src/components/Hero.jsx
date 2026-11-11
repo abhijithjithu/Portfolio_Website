@@ -12,6 +12,7 @@ import {
 import { EASE, ruleDraw, wordWipe } from '../lib/motion';
 import { picture } from '../lib/images';
 import Button from './ui/Button';
+import { trackResumeDownload } from '../lib/track';
 
 const WORDS = NAME.split(' ');
 
@@ -139,7 +140,15 @@ const Hero = () => {
                 Selected work
                 <ArrowDown className="h-4 w-4" aria-hidden="true" />
               </Button>
-              <Button as="a" href={asset(RESUME)} target="_blank" rel="noreferrer" variant="quiet" size="lg">
+              <Button
+                as="a"
+                href={asset(RESUME)}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackResumeDownload('hero')}
+                variant="quiet"
+                size="lg"
+              >
                 Résumé
               </Button>
             </motion.div>

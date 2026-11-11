@@ -13,6 +13,7 @@ import Reveal from './ui/Reveal';
 import Button from './ui/Button';
 import ContactFormFields from './ContactFormFields';
 import { useToast } from '../hooks/useToast';
+import { trackResumeDownload } from '../lib/track';
 
 /**
  * The single contact point on the page. There used to be three: a filled
@@ -52,7 +53,15 @@ const Contact = () => {
               <Copy className="h-3.5 w-3.5" aria-hidden="true" />
               Copy address
             </Button>
-            <Button as="a" href={asset(RESUME)} target="_blank" rel="noreferrer" variant="quiet" size="sm">
+            <Button
+              as="a"
+              href={asset(RESUME)}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackResumeDownload('contact')}
+              variant="quiet"
+              size="sm"
+            >
               Download résumé
             </Button>
           </div>

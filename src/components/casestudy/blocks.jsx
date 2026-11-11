@@ -1,5 +1,6 @@
 import Figure from '../ui/Figure';
 import Tag from '../ui/Tag';
+import ClvSimulator from './ClvSimulator';
 import { slugify, stripEmoji } from './slug';
 
 /**
@@ -170,6 +171,11 @@ const renderBlock = (block, key, figureIndex) => {
           className="max-w-wide"
         />
       );
+
+    // Interactive blocks are registered by name so data.js stays plain data.
+    case 'interactive':
+      if (block.component === 'clv-simulator') return <ClvSimulator key={key} />;
+      return null;
 
     case 'tags':
       return (

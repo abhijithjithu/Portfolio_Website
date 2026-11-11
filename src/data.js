@@ -143,6 +143,7 @@ export const projectData = [
 
             { type: 'section_title', text: 'Visualization (Sensitivity Analysis)' },
             { type: 'image', src: '/assets/clv-chart.png', alt: 'CLV Sensitivity Analysis Chart', caption: 'Sensitivity Analysis showing CLV changes with retention and margin' },
+            { type: 'interactive', component: 'clv-simulator' },
 
             { type: 'section_title', text: 'Business Recommendations' },
             { type: 'subtitle', text: '1. Focus on Second Purchase Conversion' },
@@ -609,6 +610,7 @@ export const projectData = [
 export const experienceData = [
     {
         id: "tce",
+        short: "TCE",
         role: "Assistant Manager",
         company: "Tata Consulting Engineers",
         duration: "Jul 2026 - Present",
@@ -618,6 +620,7 @@ export const experienceData = [
     },
     {
         id: "prodapt",
+        short: "Prodapt",
         role: "Business Analyst, AI & Cloud Solutions",
         company: "Prodapt",
         duration: "Dec 2022 - Mar 2025",
@@ -626,6 +629,7 @@ export const experienceData = [
     },
     {
         id: "tcs",
+        short: "TCS",
         role: "IT Risk & Systems Analyst",
         company: "Tata Consultancy Services (TCS)",
         duration: "Nov 2021 - Dec 2022",
@@ -727,6 +731,7 @@ export const testimonialsData = [
 export const educationData = [
     {
         id: "iim-udaipur",
+        short: "IIM Udaipur",
         degree: "MBA in Digital Enterprise Management",
         institution: "Indian Institute of Management Udaipur",
         duration: "Mar 2025 - Mar 2026",

@@ -13,16 +13,20 @@ export const CONTACT_PHONE = '+91 7306902848';
 export const LINKEDIN_URL = 'https://linkedin.com/in/abhijithp99';
 export const GITHUB_URL = 'https://github.com/abhijithjithu';
 
-/** Absolute, and deliberately not derived from BASE_URL — social crawlers reject relative URLs. */
-export const SITE_URL = 'https://abhijithjithu.github.io/Portfolio_Website/';
+/**
+ * Absolute origin with a trailing slash — social crawlers reject relative
+ * URLs. Resolved at build time in vite.config.js (SITE_URL env var, else the
+ * Vercel production domain, else localhost).
+ */
+export const SITE_URL = import.meta.env.VITE_SITE_URL;
 
 /** Purpose-built 1200x630 card in public/assets. */
 export const OG_IMAGE = `${SITE_URL}assets/og-preview.png`;
 
 /**
- * Resolves a public/ path against Vite's base so it survives the
- * GitHub Pages sub-path deploy. Every asset URL in JSX goes through here;
- * a bare "/assets/..." works in dev and 404s in production.
+ * Resolves a public/ path against Vite's base. The site is served from
+ * the domain root on Vercel, so this is a no-op today, but routing every
+ * asset URL through here keeps a sub-path deploy a one-line change.
  */
 export const asset = (path) =>
   `${import.meta.env.BASE_URL}${String(path).replace(/^\//, '')}`;
